@@ -1,0 +1,13 @@
+{
+ "release": "0.1.0-alpha.9",
+ "kernel_bytes": 104860,
+ "kernel_budget_kib": 128,
+ "ram_kib": 84,
+ "smoke_checks": "15 of 15",
+ "board": "NUCLEO-F411RE",
+ "power_cuts": 9,
+ "company": "ALL B Vegan Private Limited",
+ "cin": "U85100DL2022PTC394159",
+ "site": "https://maataa-os.allb.xyz",
+ "repo": "wortforfilms/os"
+}

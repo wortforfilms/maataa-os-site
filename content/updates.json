@@ -1,0 +1,70 @@
+[
+ {
+  "date": "2026-11-05",
+  "kind": "Site",
+  "title": "maataa-os.allb.xyz is now the home of MAATAA OS",
+  "body": [
+   "This site replaces the earlier concept page. It now holds the vision and planned product directions, the roadmap, an FAQ, support and security reporting, and the team page with the roles opening after the seed round. Releases, board runs and decisions are posted here first, and in the RSS feed."
+  ],
+  "points": []
+ },
+ {
+  "date": "2026-11-04",
+  "kind": "Board run",
+  "title": "Board runs for alpha.9: power cuts, priority inheritance, Panini 10",
+  "body": [
+   "Run on the NUCLEO-F411RE with the development key."
+  ],
+  "points": [
+   "Store survives power loss: three runs, 9 USB cable pulls during writes; each time key 63 held the last acknowledged value or the one in flight. All PASS.",
+   "Priority inheritance: with it, the high-priority task gets the lock before the middle one finishes; without it, the low task starves holding the lock. Both kernels behaved as expected; the normal kernel was flashed back.",
+   "Panini capsule 10 installed by a signed commit: hare + iha gives hara iha (rule 10, 8.3.19), the same as the host library."
+  ]
+ },
+ {
+  "date": "2026-11-03",
+  "kind": "Release",
+  "title": "Release 0.1.0-alpha.9",
+  "body": [
+   "Evidence release for QEMU and the NUCLEO-F411RE. System calls, the host-channel protocol and the sandhi wire format are unchanged."
+  ],
+  "points": [
+   "Sandhi: 8.3.19 after ayadi; e and ai drop the y, o and au keep the v.",
+   "The store-full error is now checked through the system call itself.",
+   "A CI check compares the docs with the code on every push; QEMU smoke test 15 of 15."
+  ]
+ },
+ {
+  "date": "2026-11-03",
+  "kind": "Release",
+  "title": "Release 0.1.0-alpha.8: signed host requests",
+  "body": [
+   "Security release."
+  ],
+  "points": [
+   "Committing an app install, removing the installed app and writing a task's store key now need an ed25519 signature over a fresh per-boot challenge, so recorded requests cannot be replayed.",
+   "Each store key is written only by its owner: the host channel, or an app by its signed name. Reads stay open by design."
+  ]
+ },
+ {
+  "date": "2026-11-02",
+  "kind": "Release",
+  "title": "Release 0.1.0-alpha.7: consolidation",
+  "body": [
+   "No change to system calls or the wire format."
+  ],
+  "points": [
+   "Engineering docs written from the source: system-call ABI, memory map, threat model, rule and evidence registries.",
+   "Code no build used was removed, and more smoke checks were added, including MPU faults."
+  ]
+ },
+ {
+  "date": "2026-11-02",
+  "kind": "Release",
+  "title": "Release 0.1.0-alpha.6: Panini capsule 8",
+  "body": [
+   "New sandhi rules in both the capsule and the host library, and a release script that refuses to create a missing signing key by accident."
+  ],
+  "points": []
+ }
+]

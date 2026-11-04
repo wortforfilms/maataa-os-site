@@ -1,0 +1,17 @@
+Copyright (c) 2026 ALL B Vegan Private Limited (CIN U85100DL2022PTC394159). All rights reserved.
+
+This repository holds the text, images, design and code of the website
+maataa-os.allb.xyz. No licence is granted to copy, modify or redistribute
+any part of it, except as permitted by law, without written permission
+from ALL B Vegan Private Limited.
+
+The device images are AI-generated concept renders. "MAATAA" and
+"MAATAA OS" are names used by ALL B Vegan Private Limited. STM32 and
+NUCLEO are trademarks of STMicroelectronics.
+
+The fonts in public/assets/fonts (Space Grotesk, IBM Plex Sans,
+JetBrains Mono) are under the SIL Open Font License 1.1 and remain
+under that licence.
+
+The MAATAA OS kernel is a separate work in github.com/wortforfilms/os,
+under the licence in that repository.

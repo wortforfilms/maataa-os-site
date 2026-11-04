@@ -1,0 +1,40 @@
+name: maataa-os site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 */6 * * *"   # refresh "Latest commits" every six hours
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: maataa-os-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out the kernel repository (facts source)
+        uses: actions/checkout@v4
+        with:
+          repository: wortforfilms/os
+          path: kernel
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build generated parts (updates, feed, commits, sitemap)
+        run: python3 tools/build.py
+      - name: Check links, claims, footer and release
+        run: python3 tools/check.py --kernel kernel
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

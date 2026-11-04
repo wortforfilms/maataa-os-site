@@ -1,0 +1,116 @@
+category,product,use,tier,what MAATAA OS needs,certification,status
+Boards & modules,MaataaOS flexible compute board,Flexible PCB with a microcontroller for curved or tight spaces,B,"Bigger MCU, flex PCB design",,concept
+Boards & modules,System-on-module compute card,Plug-in compute card for products that need a full application processor,C,Linux-class processor; MAATAA on a companion MCU,,concept
+Boards & modules,Carrier board,Base board that hosts a compute card and its connectors,C,Follows the compute card,,concept
+Boards & modules,Industrial I/O expansion board,Isolated digital and analog I/O for machines,A,"GPIO, ADC drivers",,concept
+Boards & modules,GPIO / serial expansion,"Sensors, relays and industrial equipment connectivity",A,"GPIO, UART, SPI, I2C (present today)",,concept
+Boards & modules,Motor-driver PCB,High-current motor stage with its control MCU,A,"PWM, ADC, encoder drivers",,concept
+Boards & modules,CAN bus / RS-485 expansion module,Field-bus connection for vehicles and plants,A,CAN and RS-485 drivers,,concept
+Boards & modules,Energy-monitoring module,"Current, voltage and energy measurement",A,"ADC, metering app",,concept
+Boards & modules,Security module,"Secure boot, device identity and key storage",A,Production security profile (next milestone),,concept
+Boards & modules,Battery backup module,Power-loss resilience; MAATAA on its battery controller,A,"ADC, power-fail handling (store already power-loss safe)",,concept
+Boards & modules,Audio processing module,Audio input and processing,B,"DSP-class MCU, I2S driver",,concept
+Boards & modules,Display module,Compact screen for a hub or controller,B,LCD driver and a small UI library on a bigger MCU,,concept
+Boards & modules,Camera module,Vision-enabled monitoring,C,Camera ISP; needs an application processor,,concept
+Boards & modules,NVMe storage module,"Local logs, media and edge data",C,PCIe and a filesystem; application processor,,concept
+Boards & modules,PoE power module,Power over Ethernet supply,H,Hardware only,,concept
+Boards & modules,Cellular modem module,4G/5G connectivity,H,Runs vendor firmware; MAATAA is the host over UART,,concept
+Boards & modules,LoRa / long-range radio module,"Long-range, low-power radio",H,Runs vendor firmware; MAATAA is the host over SPI,,concept
+Boards & modules,GNSS positioning module,Satellite positioning,H,Runs vendor firmware; MAATAA is the host over UART,,concept
+Boards & modules,Flexible sensor tail,Sensor connections on curved or wearable surfaces,H,"Flex PCB, no OS",,concept
+Boards & modules,Thermal enclosure kit,Heat management and protective enclosure,H,"Mechanical, no OS",,concept
+Home & building,Sensor hub,"Temperature, humidity, air quality and other inputs",A,I2C/SPI sensors (present today),,concept
+Home & building,Remote button and status panel,"Simple trigger, alert and device status",A,"GPIO, LEDs, UART (present today)",,concept
+Home & building,Smart switch,Wall switch with local control,A,Radio stack (Thread/BLE) for a connected version,,concept
+Home & building,Smart dimmer,Light dimming,A,PWM or phase control; radio stack,,concept
+Home & building,Home automation wall switch,Multi-button scene switch,A,"GPIO, radio stack",,concept
+Home & building,Multi-channel relay controller,Switching loads from one controller,A,GPIO,,concept
+Home & building,Door/window sensor,Open-close detection,A,"Low-power mode, radio stack",,concept
+Home & building,Water-leak sensor,Leak detection,A,"Low-power mode, radio stack",,concept
+Home & building,Room sensor cluster,Several room sensors in one unit,A,I2C/SPI sensors,,concept
+Home & building,Irrigation controller,Valve scheduling for gardens,A,"GPIO, store for schedules",,concept
+Home & building,Smart plug,"Switched, metered socket",A,"Metering, radio stack",BIS / electrical safety,concept
+Home & building,Smart energy meter,Home or panel energy metering,A,Metering app,metering standards,concept
+Home & building,Occupancy and presence sensor,Presence by PIR or radar,B,"Radar or PIR driver, radio stack",,concept
+Home & building,Smart thermostat,Heating and cooling control with a screen,B,"Small display UI, radio stack",,concept
+Home & building,Smart lock controller,Lock control and access,B,"Radio stack, secure element",security certification,concept
+Home & building,Smoke and air-quality alarm,Smoke and air sensing,B,"Sensor drivers, radio stack",life-safety certification,concept
+Home & building,Building controller,"Lighting, access, HVAC and facility automation",B,Ethernet or BACnet/Modbus stack,,concept
+Home & building,Home and office hub,Local automation and control,B,Thread/Matter-class radio and network stack; a full media hub would be C,,concept
+"Industrial, agriculture & field",Vibration and machine-health sensor,Early warning of machine faults,A,"ADC, signal processing app",,concept
+"Industrial, agriculture & field",Industrial temperature / pressure node,Process measurement,A,"ADC, 4–20 mA input",,concept
+"Industrial, agriculture & field",Water-quality monitor,"pH, turbidity and conductivity",A,"ADC, sensor drivers",,concept
+"Industrial, agriculture & field",Soil-moisture sensor,Soil sensing for farms,A,"ADC, low-power mode",,concept
+"Industrial, agriculture & field",Weather station,"Wind, rain and temperature",A,Sensor drivers,,concept
+"Industrial, agriculture & field",Greenhouse controller,Climate and irrigation in greenhouses,A,"GPIO, sensors, store",,concept
+"Industrial, agriculture & field",Cold-chain data logger,Temperature records for medicines and food,A,Sensors; power-loss-safe store (present today),,concept
+"Industrial, agriculture & field",Solar inverter monitor,Inverter and string monitoring,A,RS-485/Modbus,,concept
+"Industrial, agriculture & field",Remote pump controller,Pump control in the field,A,"GPIO, relay, radio host",,concept
+"Industrial, agriculture & field",Industrial control panel,Machine and line monitoring and control,A,"GPIO, CAN; a large HMI screen would be C",,concept
+"Industrial, agriculture & field",Livestock tracker,Location and health of animals,B,"GNSS host, LoRa, very low power",,concept
+"Industrial, agriculture & field",Asset-tracking tag,Tracking equipment and cases,B,"GNSS or BLE, very low power",,concept
+"Industrial, agriculture & field",Industrial protocol gateway,"CAN, RS-485 and Ethernet bridge",B,Ethernet and TCP/IP stack,,concept
+"Industrial, agriculture & field",Edge gateway,Connects sensors to local or cloud services,B,"TCP/IP, TLS; heavy local processing would be C",,concept
+Robotics controllers,Motor and actuator controller,"Motors, servos and actuators",A,"PWM, encoders, CAN",,concept
+Robotics controllers,Robot I/O safety board,"Emergency stop, limit switches, safety inputs",A,GPIO; isolation (present today),functional safety,concept
+Robotics controllers,Emergency-stop pendant,Hand-held stop and control,A,"GPIO, radio or cable link",functional safety,concept
+Robotics controllers,Robotic arm controller,Joint-level control for arms,A,"PWM, encoders; the arm's planner would be C",,concept
+Robotics controllers,Robot joint encoder controller,Position sensing at each joint,A,"Encoder drivers, CAN",,concept
+Robotics controllers,Cobot safety module,Safety for robots that work beside people,A,"Isolation, safety app",functional safety,concept
+Robotics controllers,Robot power distribution module,Power switching and monitoring,A,"ADC, GPIO",,concept
+Robotics controllers,Sensor fusion module,"IMU, encoders and distance sensors together",B,Faster MCU (Cortex-M7); camera fusion would be C,,concept
+Robotics controllers,Robot communication bridge,Links the robot to gateways and fleet systems,B,"CAN, Ethernet, TCP/IP",,concept
+Robotics controllers,Teleoperation console,Remote control and operator feedback,B,"Radio, small display; video feed would be C",,concept
+Robotics controllers,AMR / AGV controller,Low-level control for mobile robots,A+C,MAATAA on motor and safety; navigation on Linux,,concept
+Robotics controllers,Robot compute controller,The robot's main computer,C,Application processor; MAATAA on its I/O and safety MCU,,concept
+Robotics controllers,Vision AI module,Object detection and inspection,C,"AI accelerator, Linux",,concept
+Robotics controllers,Robot fleet gateway,Connectivity and coordination for many robots,C,"Full network stack, Linux",,concept
+Robotics controllers,Flexible robot interconnect,Flex PCB connections near moving joints,H,Hardware only,,concept
+Robots (systems),Drone / UAV,Inspection and defence drones,A+C,MAATAA on the flight controller; payload computer on Linux,DGCA rules,concept
+Robots (systems),AMR / warehouse robot,Moves goods in warehouses,A+C,"MAATAA on motor, safety and I/O controllers",,concept
+Robots (systems),AGV platform,Follows fixed routes in plants,A+C,MAATAA on drive and safety controllers,,concept
+Robots (systems),Robotic arm,Industrial or educational arm,A+C,MAATAA on joint controllers,,concept
+Robots (systems),Quadruped inspection robot,Walks sites and inspects,A+C,MAATAA on leg and safety controllers,,concept
+Robots (systems),Humanoid research robot,Research platform,A+C,MAATAA on joint controllers,,concept
+Robots (systems),Agricultural rover,Crop-row monitoring,A+C,MAATAA on drive and sensor controllers,,concept
+Robots (systems),Indoor delivery robot,Delivers inside buildings,A+C,MAATAA on drive and safety controllers,,concept
+Robots (systems),Security patrol robot,Patrols sites,A+C,MAATAA on drive and sensor controllers,,concept
+Robots (systems),Underwater inspection robot,Inspects underwater structures,A+C,MAATAA on thruster controllers,,concept
+Robots (systems),Mobile robot chassis,Base for building robots,A+C,MAATAA on motor controllers,,concept
+Robots (systems),Robot gripper and end-effector,Grasping,A,"PWM, force sensing",,concept
+Robots (systems),Robot charging dock,Charges robots,A,"Power control, GPIO",,concept
+Robots (systems),Robotics education kit,Learning and prototyping,A,"Developer kit, simple SDK",,concept
+Robots (systems),Robotics developer kit,Prototyping and integration,A,"SDK, signed-app toolchain",,concept
+Robots (systems),Robot fleet operations station,Operators watch and control fleets,C,"Workstation, Linux",,concept
+Mobility & energy,Smart street-light controller,Street-light switching and dimming,A,"PWM, radio host",,concept
+Mobility & energy,Solar power monitoring gateway,Solar plant monitoring,A,RS-485/Modbus; cloud link would be B,,concept
+Mobility & energy,Battery storage controller,Battery system supervision,A,"CAN, ADC",battery safety,concept
+Mobility & energy,Vehicle telematics unit,Vehicle data and tracking,B,"CAN, cellular host, GNSS host",automotive (AIS-140 for some vehicles),concept
+Mobility & energy,Fleet tracking device,Tracking vehicles,B,"GNSS and cellular host, low power",,concept
+Mobility & energy,Rugged vehicle controller,Field and vehicle-mounted control,B,"CAN, automotive temperature range",automotive,concept
+Mobility & energy,Parking access controller,Barrier and ticket control,B,"GPIO, network",,concept
+Mobility & energy,EV charging controller,Charger control and metering,B,"Metering, network, OCPP",IEC 61851 / BIS,concept
+Mobility & energy,In-vehicle display controller,Dashboard screen,C,"Display stack, Linux",,concept
+Mobility & energy,Public transit information terminal,Passenger information,C,"Display, network, Linux",,concept
+Commercial & public space,Conference-room controller,"Room lights, screens and audio",B,"Small display UI, network",,concept
+Commercial & public space,Smart classroom control panel,Classroom equipment control,B,"Small display UI, network",,concept
+Commercial & public space,Access-control reader,Card or biometric entry,B,"RFID driver, network, secure element",security certification,concept
+Commercial & public space,Touchscreen information panel,Information in buildings and campuses,C,"Display, network, Linux",,concept
+Commercial & public space,Digital signage controller,Screens and content playback,C,"Video, Linux",,concept
+Commercial & public space,Kiosk controller,Self-service kiosks,C,"Touchscreen, payments, Linux",,concept
+Commercial & public space,Retail / mandi terminal,"Retail, market and billing",C,"Display, printer, database, Linux",payment certification if it takes cards,concept
+Commercial & public space,Point-of-sale terminal,Billing and payments,C,"Display, payments, Linux",payment certification,concept
+Commercial & public space,Event operations box,Local connectivity for events,C,"Network services, Linux",,concept
+Commercial & public space,Production control panel,Camera and display control for production teams,C,"Video I/O, Linux",,concept
+Commercial & public space,Education lab node,Classroom and maker-space terminal,C,"Display, network, Linux",,concept
+Professional & specialist,Industrial handheld terminal,Field data entry,B,"Small display, radio; a full touchscreen would be C",,concept
+Professional & specialist,Medical / care monitoring hub,Patient or care monitoring,C,Linux; MAATAA on sensor MCUs,medical device approval,concept
+Professional & specialist,Local AI vision appliance,One local vision task,C,"AI accelerator, Linux",,concept
+Professional & specialist,AI appliance,One dedicated local AI task,C,"AI accelerator, Linux",,concept
+Professional & specialist,Voice assistant appliance,Local voice control,C,"Audio, Linux; wake-word on an MCU could be B",,concept
+Personal & developer,MaataaOS developer kit,Hardware and OS development,A,Today: NUCLEO-F411RE; SDK to come,,concept
+Personal & developer,Wearable device,"Notifications, sensing, hands-free use",B,"Low power, BLE, small display",,concept
+Personal & developer,MaataaOS Node,General-purpose edge device,C,"Application processor, Linux",,concept
+Personal & developer,Desktop workstation,"Apps, development and edge workloads",C,Desktop OS; not MAATAA OS,,concept
+Personal & developer,Tablet,"Field, education and control use",C,Mobile OS; not MAATAA OS,,concept
+Personal & developer,Mobile device,Handheld concept,C,Mobile OS; not MAATAA OS,,concept
