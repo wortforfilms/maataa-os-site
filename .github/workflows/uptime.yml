@@ -16,7 +16,7 @@ jobs:
         run: |
           set -e
           base=https://maataa-os.allb.xyz
-          for p in / /updates.html /roadmap.html /vision.html /faq.html /feed.xml /.well-known/security.txt; do
+          for p in / /updates /roadmap /vision /faq /feed.xml /.well-known/security.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$base$p")
             echo "$p $code"
             test "$code" = 200

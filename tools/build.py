@@ -39,7 +39,7 @@ def short(u):
     e = html.escape
     first = u["body"][0] if u["body"] else ""
     return (f'<li class="entry"><time datetime="{u["date"]}">{nice(u["date"])}</time>'
-            f'<h3><a href="/updates.html#{uid(u)}" style="color:inherit;text-decoration:none">{e(u["title"])}</a></h3><p>{e(first)}</p></li>')
+            f'<h3><a href="/updates#{uid(u)}" style="color:inherit;text-decoration:none">{e(u["title"])}</a></h3><p>{e(first)}</p></li>')
 
 def put(path, name, content):
     p = PUB / path
@@ -76,11 +76,11 @@ items = []
 for u in U:
     desc = " ".join(u["body"] + u.get("points", []))
     dt = format_datetime(datetime.datetime.fromisoformat(u["date"] + "T12:00:00+05:30"))
-    items.append(f"<item><title>{html.escape(u['title'])}</title><link>{F['site']}/updates.html#{uid(u)}</link>"
+    items.append(f"<item><title>{html.escape(u['title'])}</title><link>{F['site']}/updates#{uid(u)}</link>"
                  f"<guid isPermaLink=\"false\">maataa-os-{uid(u)[2:]}</guid><pubDate>{dt}</pubDate>"
                  f"<category>{html.escape(u['kind'])}</category><description>{html.escape(desc)}</description></item>")
 (PUB / "feed.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>\n'
-    f"<title>MAATAA OS updates</title><link>{F['site']}/updates.html</link>\n"
+    f"<title>MAATAA OS updates</title><link>{F['site']}/updates</link>\n"
     "<description>Releases, board runs and decisions for MAATAA OS.</description><language>en</language>\n"
     + "\n".join(items) + "\n</channel></rss>\n")
 

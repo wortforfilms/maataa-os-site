@@ -34,7 +34,7 @@ for p in pages:
         path = ref.lstrip("/") or "index.html"
         if path.endswith("/"):
             path += "index.html"
-        if not (PUB / path).exists():
+        if not (PUB / path).exists() and not (PUB / (path + ".html")).exists():
             bad.append(f"{p.name}: missing target {ref}")
     for need in (F["company"], F["cin"], "concept renders"):
         if need not in s:
