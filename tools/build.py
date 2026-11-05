@@ -7,7 +7,7 @@
 
 Run from sites/maataa-os:  python3 tools/build.py
 """
-import json, re, html, sys, urllib.request, datetime
+import json, re, html, sys, os, subprocess, urllib.request, datetime
 from email.utils import format_datetime
 from pathlib import Path
 
@@ -58,6 +58,9 @@ def commits():
         print(f"note: commits not refreshed ({ex}); keeping the last list")
         return None
     e = html.escape
+    global LATEST
+    if data:
+        LATEST = (data[0]["sha"][:7], data[0]["commit"]["message"].splitlines()[0], data[0]["commit"]["author"]["date"][:10], data[0]["html_url"])
     rows = []
     for c in data:
         msg = c["commit"]["message"].splitlines()[0]
@@ -66,11 +69,40 @@ def commits():
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     return "\n".join(rows) + f'\n<li><span>Read from GitHub at {stamp}.</span></li>'
 
+LATEST = None
 put("updates.html", "updates", "\n".join(entry(u) for u in U))
 put("index.html", "latest", "\n".join(short(u) for u in U[:2]))
 c = commits()
 if c:
     put("updates.html", "commits", c)
+
+def site_sha():
+    sha = os.environ.get("GITHUB_SHA")
+    if not sha:
+        try:
+            sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        except Exception:
+            sha = ""
+    return sha[:7] or "unknown"
+
+def row(k, v):
+    return f'<tr><td style="color:var(--mut)">{k}</td><td style="color:var(--ink)">{v}</td></tr>'
+
+e = html.escape
+now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+sha = site_sha()
+rows = [
+    row("Site built", now),
+    row("Site commit", f'<a href="https://github.com/wortforfilms/maataa-os-site/commit/{sha}"><code>{sha}</code></a>'),
+    row("Checks before deploy", "Links and images, wording, company footer, and the release and kernel size against the kernel repository"),
+    row("MAATAA OS release", f'<a href="https://github.com/{F["repo"]}/releases">{e(F["release"])}</a> (alpha)'),
+    row("Kernel size", f'{F["kernel_bytes"]:,} bytes of a {F["kernel_budget_kib"]} KiB flash budget; {F["ram_kib"]} KiB RAM'),
+    row("QEMU checks", f'{e(F["smoke_checks"])} on every push'),
+    row("Board", f'{e(F["board"])} (STM32F411)'),
+]
+if LATEST:
+    rows.append(row("Latest kernel commit", f'<a href="{e(LATEST[3])}"><code>{LATEST[0]}</code></a> {e(LATEST[1])} ({LATEST[2]})'))
+put("status.html", "status", "\n".join(rows))
 
 items = []
 for u in U:

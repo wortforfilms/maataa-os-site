@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Press kit · MAATAA OS</title>
+<meta name="description" content="Facts, descriptions, founder bio and an approved photo for writing about MAATAA OS.">
+<meta property="og:title" content="MAATAA OS">
+<meta property="og:description" content="A memory-isolated Rust microkernel for microcontrollers, with signed apps installed at run time.">
+<meta property="og:image" content="https://maataa-os.allb.xyz/assets/board.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2310151F'/%3E%3Crect x='8' y='14' width='16' height='11' rx='2' fill='%23FF9A1F'/%3E%3Cpath d='M11 14v-3a5 5 0 0 1 10 0v3' stroke='%23FF9A1F' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
+
+<link href="/assets/fonts/fonts.css" rel="stylesheet">
+<link rel="alternate" type="application/rss+xml" title="MAATAA OS updates" href="/feed.xml">
+<style>
+:root{--bg:#10151F;--bg2:#182030;--line:#2A3447;--ink:#F3EFE6;--mut:#AEB6C4;--acc:#FF9A1F;--ok:#3DD68C;--paper:#F3EFE6;--pink:#161B24;--pmut:#4A5260;--pacc:#A65200}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'IBM Plex Sans',system-ui,sans-serif}
+a{color:var(--acc)}a:hover{color:#FFB75C}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--acc);color:#000;padding:8px 12px;z-index:9}
+header.top{position:sticky;top:0;z-index:5;background:rgba(16,21,31,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;min-height:64px}
+.brand{font:700 20px 'Space Grotesk',sans-serif;letter-spacing:1px;color:var(--ink);text-decoration:none;margin-right:auto}.brand span{color:var(--acc)}
+nav a{color:var(--mut);text-decoration:none;margin-left:20px;font-size:15px;display:inline-block;padding:10px 0}nav a:hover{color:var(--ink)}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.12;margin:0}
+.eyebrow{font-size:14px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--acc);margin:0 0 14px}
+.hero{padding:72px 0 64px}.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:center}
+.hero h1{font-size:clamp(36px,5vw,58px)}.hero p.lead{font-size:20px;color:#CDD3DD;margin:22px 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:14px}.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;min-height:44px}
+.btn.p{background:var(--acc);color:#1A1205}.btn.p:hover{background:#FFB75C;color:#1A1205}.btn.s{border:1px solid var(--line);color:var(--ink)}
+.facts{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-wrap:wrap;gap:10px 24px;color:var(--mut);font-size:15px}.facts li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:4px;background:var(--ok);margin-right:8px}
+.hero figure{margin:0}.hero img{width:100%;height:auto;border-radius:16px;border:1px solid var(--line);display:block}.hero figcaption{color:var(--mut);font-size:14px;margin-top:10px}
+section.band{padding:80px 0;border-top:1px solid var(--line)}section.light{background:var(--paper);color:var(--pink)}section.light .eyebrow{color:var(--pacc)}section.light p,section.light td{color:var(--pmut)}
+h2{font-size:clamp(28px,3.6vw,42px);max-width:900px}.intro{max-width:820px;color:var(--mut);font-size:18px;margin:18px 0 36px}section.light .intro{color:var(--pmut)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:24px}.card h3{font-size:21px;margin-bottom:8px}.card p{margin:0;color:var(--mut);font-size:16px}
+.stack{display:flex;flex-direction:column;gap:10px}.layer{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:18px;align-items:center;background:#fff;border:1px solid #DDD6C8;border-radius:12px;padding:18px 22px}
+.layer b{font-family:'Space Grotesk',sans-serif;font-size:18px;color:var(--pink)}.layer p{margin:0;font-size:16px}.pill{font-size:13px;font-weight:600;color:#0B6B3E;border:1px solid #0B6B3E;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.note{font-size:15px;margin-top:18px}
+.gal{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.gal li{position:relative;display:flex;flex-direction:column;gap:4px}.gal img{width:100%;height:auto;border-radius:12px;display:block;border:1px solid var(--line)}
+.gal .tag{position:absolute;top:10px;left:10px;background:rgba(16,21,31,.82);color:#E8E4DA;font-size:12px;padding:3px 9px;border-radius:6px}.gal strong{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-top:6px}.gal em{font-style:normal;color:var(--mut);font-size:14px}
+.tbl{overflow-x:auto;border:1px solid #DDD6C8;border-radius:12px;background:#fff}table{border-collapse:collapse;width:100%;min-width:640px}th,td{text-align:left;padding:13px 16px;border-bottom:1px solid #E7E1D5;vertical-align:top;font-size:16px}th{font-size:14px;color:var(--pink);background:#FAF7F1}tr:last-child td{border-bottom:0}
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}.st{background:#fff;border:1px solid #DDD6C8;border-radius:12px;padding:20px}.st h3{font-size:18px}.st .k{display:inline-block;font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;margin:8px 0}.done{color:#0B6B3E;border:1px solid #0B6B3E}.next{color:#8A4300;border:1px solid #8A4300}.plan{color:#4A5260;border:1px solid #4A5260}.st p{margin:0;font-size:15px}
+pre{background:#0A0E15;border:1px solid var(--line);border-radius:12px;padding:20px;overflow-x:auto;font:15px/1.7 'JetBrains Mono',monospace;color:#CDE9D7}pre .ok{color:var(--ok)}
+footer{border-top:1px solid var(--line);padding:40px 0 56px;color:var(--mut);font-size:15px}footer .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between}footer p{margin:0}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.layer{grid-template-columns:1fr}nav a{margin-left:0;margin-right:16px}}
+
+.page-hero{padding:64px 0 24px}.page-hero h1{font-size:clamp(32px,4.4vw,50px)}.page-hero p{color:var(--mut);font-size:19px;max-width:820px;margin:16px 0 0}
+.feed{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px}
+.entry{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:24px 26px}.entry time{font:14px 'JetBrains Mono',monospace;color:var(--acc)}.entry h3{font-size:22px;margin:6px 0 10px}.entry p{margin:0 0 8px;color:#CDD3DD}.entry ul{margin:6px 0 0;padding-left:20px;color:#CDD3DD}.entry .kind{float:right;font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--mut)}
+.live{list-style:none;padding:0;margin:0;font-size:15px}.live li{border-bottom:1px solid var(--line);padding:10px 0;display:flex;gap:14px;flex-wrap:wrap}.live code{font:13px 'JetBrains Mono',monospace;color:var(--acc)}.live span{color:var(--mut)}
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}.col h2{font-size:24px;margin-bottom:14px}.col .item{background:#fff;border:1px solid #DDD6C8;border-radius:12px;padding:18px 20px;margin-bottom:12px}.col .item h3{font-size:18px;color:var(--pink)}.col .item p{margin:6px 0 0;font-size:15px}.gate{display:block;font-size:13px;margin-top:8px;color:#8A4300}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+
+details.qa{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:0 22px;margin-bottom:12px}details.qa summary{cursor:pointer;padding:18px 0;font:600 18px 'Space Grotesk',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:16px}details.qa summary::after{content:"+";color:var(--acc);font-size:22px;line-height:1}details.qa[open] summary::after{content:"−"}details.qa div{padding:0 0 18px;color:#CDD3DD}details.qa p{margin:0 0 10px}
+.qcat{margin:40px 0 14px;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--acc)}
+.prod{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}.pc{background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.pc .im{position:relative}.pc img{width:100%;height:auto;display:block}.pc .tag{position:absolute;top:10px;left:10px;background:rgba(16,21,31,.85);color:#E8E4DA;font-size:12px;padding:3px 9px;border-radius:6px}.pc .bd{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px}.pc h3{font-size:22px}.pc p{margin:0;color:#CDD3DD;font-size:16px}.pc dl{margin:6px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:14px}.pc dt{color:var(--mut)}.pc dd{margin:0}
+.person{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start}.avatar{width:200px;height:200px;border-radius:20px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font:700 64px 'Space Grotesk',sans-serif;color:var(--acc)}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}.role{background:#fff;border:1px solid #DDD6C8;border-radius:12px;padding:22px}.role h3{font-size:20px;color:var(--pink)}.role p,.role li{font-size:15px;color:var(--pmut)}.role ul{padding-left:18px;margin:8px 0}.role .meta{font-size:13px;color:#8A4300;font-weight:600}
+.sup{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+@media (max-width:700px){.person{grid-template-columns:1fr}}
+
+details.qa{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:0 22px;margin-bottom:12px}details.qa summary{cursor:pointer;padding:18px 0;font:600 18px 'Space Grotesk',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:16px}details.qa summary::after{content:"+";color:var(--acc);font-size:22px;line-height:1}details.qa[open] summary::after{content:"−"}details.qa div{padding:0 0 18px;color:#CDD3DD}details.qa p{margin:0 0 10px}
+.qcat{margin:40px 0 14px;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--acc)}
+.prod{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}.pc{background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.pc .im{position:relative}.pc img{width:100%;height:auto;display:block}.pc .tag{position:absolute;top:10px;left:10px;background:rgba(16,21,31,.85);color:#E8E4DA;font-size:12px;padding:3px 9px;border-radius:6px}.pc .bd{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px}.pc h3{font-size:22px}.pc p{margin:0;color:#CDD3DD;font-size:16px}.pc dl{margin:6px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:14px}.pc dt{color:var(--mut)}.pc dd{margin:0}
+.person{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start}.avatar{width:200px;height:200px;border-radius:20px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font:700 64px 'Space Grotesk',sans-serif;color:var(--acc)}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}.role{background:#fff;border:1px solid #DDD6C8;border-radius:12px;padding:22px}.role h3{font-size:20px;color:var(--pink)}.role p,.role li{font-size:15px;color:var(--pmut)}.role ul{padding-left:18px;margin:8px 0}.role .meta{font-size:13px;color:#8A4300;font-weight:600}
+.sup{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+@media (max-width:700px){.person{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="/">MAATAA <span>OS</span></a>
+<nav aria-label="Main"><a href="/vision">Vision</a><a href="/portfolio">Portfolio</a><a href="/updates">Updates</a><a href="/roadmap">Roadmap</a><a href="/team">Team</a><a href="/faq">FAQ</a><a href="/support">Support</a><a href="https://github.com/wortforfilms/os">GitHub ↗</a></nav>
+</div></header>
+<main id="main">
+<section class="page-hero"><div class="wrap"><p class="eyebrow">Press kit</p><h1>About MAATAA OS, in words you can use.</h1><p>Facts, short descriptions, the founder's bio and an approved photo. Please use the wording here, and write to us for interviews or a demo.</p></div></section>
+<section class="band" style="border-top:0;padding-top:16px"><div class="wrap" style="max-width:900px">
+<h2 style="font-size:26px">In one line</h2>
+<p style="color:#CDD3DD;font-size:18px">MAATAA OS is a memory-isolated Rust operating system for microcontrollers, with signed apps installed without reflashing, built in India.</p>
+<h2 style="font-size:26px;margin-top:32px">In one paragraph</h2>
+<p style="color:#CDD3DD">MAATAA OS is an operating system for the small controllers inside drones, robots and industrial machines. Written in Rust, it walls off every task with the chip's memory protection, installs new features as signed, fuel-limited WebAssembly apps, and keeps its data in an encrypted store that survives power loss. It is an alpha, running on an STM32F411 development board, built by ALL B Vegan Private Limited in Delhi. Its showcase app is a Paninian Sanskrit grammar engine that names the rule behind every answer.</p>
+<h2 style="font-size:26px;margin-top:32px">Facts</h2>
+<div class="tbl" style="background:var(--bg2);border-color:var(--line)"><table><tbody>
+<tr><td style="color:var(--mut)">Company</td><td style="color:var(--ink)">ALL B Vegan Private Limited, Delhi (CIN U85100DL2022PTC394159)</td></tr>
+<tr><td style="color:var(--mut)">Founder</td><td style="color:var(--ink)">Hemant Kumar Dixit</td></tr>
+<tr><td style="color:var(--mut)">First release</td><td style="color:var(--ink)">0.1.0-alpha.1, May 2026</td></tr>
+<tr><td style="color:var(--mut)">Current release</td><td style="color:var(--ink)">0.1.0-alpha.9, November 2026</td></tr>
+<tr><td style="color:var(--mut)">Runs on</td><td style="color:var(--ink)">STM32F411 (Cortex-M4) on a NUCLEO-F411RE, and QEMU</td></tr>
+<tr><td style="color:var(--mut)">Stage</td><td style="color:var(--ink)">Alpha; raising a seed round</td></tr>
+</tbody></table></div>
+<h2 style="font-size:26px;margin-top:32px">Founder bio</h2>
+<p style="color:#CDD3DD">Hemant Kumar Dixit founded ALL B Vegan Private Limited and built MAATAA OS end to end: the kernel, the WebAssembly runtime, the sealed store, the signing tools, the Panini engine and a derivation core in Verilog. He works as an architect and event producer, and has built software for event planning, media and commerce.</p>
+<h2 style="font-size:26px;margin-top:32px">Images</h2>
+<p style="color:#CDD3DD">Approved photo: <a href="/assets/board.webp">our NUCLEO-F411RE development board</a> (WebP, 1200 px). Caption: "The development board running MAATAA OS." Device pictures elsewhere on this site are AI-generated concept renders; please do not present them as products.</p>
+<h2 style="font-size:26px;margin-top:32px">Please write it this way</h2>
+<ul style="color:#CDD3DD">
+<li>The name is <strong>MAATAA OS</strong>: two words, capitals.</li>
+<li>It is an alpha, not a production or certified system.</li>
+<li>Please do not call it the first, the only or a "sovereign" OS; India already has other indigenous RTOSes.</li>
+</ul>
+<p class="note">Press contact: <a href="mailto:hkfaduio@gmail.com?subject=MAATAA%20OS%20press">hkfaduio@gmail.com</a></p>
+</div></section>
+</main>
+<footer><div class="wrap">
+<div><p><strong style="color:var(--ink)">MAATAA OS</strong> · A product of ALL B Vegan Private Limited, Delhi · Built in India</p>
+<p style="margin-top:8px;font-size:13px">© 2026 ALL B Vegan Private Limited · CIN U85100DL2022PTC394159. Device images are AI-generated concept renders, not products. MAATAA OS is alpha software and is not certified for safety-critical use.</p></div>
+<p><a href="/vision">Vision</a> · <a href="/portfolio">Portfolio</a> · <a href="/updates">Updates</a> · <a href="/roadmap">Roadmap</a> · <a href="/team">Team &amp; careers</a> · <a href="/faq">FAQ</a> · <a href="/support">Support</a> · <a href="/security">Security</a> · <a href="/company">Company</a> · <a href="/press">Press</a> · <a href="/status">Status</a> · <a href="/privacy">Privacy &amp; terms</a> · <a href="/feed.xml">RSS</a> · <a href="https://github.com/wortforfilms/os">GitHub</a> · Hemant Kumar Dixit, <a href="mailto:hkfaduio@gmail.com">hkfaduio@gmail.com</a></p>
+</div></footer>
+</body>
+</html>

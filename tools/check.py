@@ -18,7 +18,7 @@ F = json.loads((ROOT / "content/facts.json").read_text())
 BANNED = [r"\bsovereign\b", r"world'?s first", r"india'?s first", r"production[- ]ready(?! operating system: )",
           r"\bai[- ]native\b", r"\bTBD\b", r"lorem ipsum", r"\bguarantee"]
 ALLOW_PRODUCTION_READY = ["not yet a production operating system", "Not positioned as a production-ready",
-                          "Is it production-ready?", "No production readiness", "\"production-ready\""]
+                          "Is it production-ready?", "No production readiness", "\"production-ready\"", "or a \"sovereign\" OS"]
 bad = []
 pages = sorted(PUB.glob("*.html"))
 for p in pages:
