@@ -52,7 +52,7 @@ Home & building,Home and office hub,Local automation and control,B,Thread/Matter
 "Industrial, agriculture & field",Industrial protocol gateway,"CAN, RS-485 and Ethernet bridge",B,Ethernet and TCP/IP stack,,concept
 "Industrial, agriculture & field",Edge gateway,Connects sensors to local or cloud services,B,"TCP/IP, TLS; heavy local processing would be C",,concept
 Robotics controllers,Motor and actuator controller,"Motors, servos and actuators",A,"PWM, encoders, CAN",,concept
-Robotics controllers,Robot I/O safety board,"Emergency stop, limit switches, safety inputs",A,GPIO, isolation; needs a safety-certified OS,functional safety,concept
+Robotics controllers,Robot I/O safety board,"Emergency stop, limit switches, safety inputs",A,"GPIO, isolation; needs a safety-certified OS",functional safety,concept
 Robotics controllers,Emergency-stop pendant,Hand-held stop and control,A,"GPIO, radio or cable link",functional safety,concept
 Robotics controllers,Robotic arm controller,Joint-level control for arms,A,"PWM, encoders; the arm's planner would be C",,concept
 Robotics controllers,Robot joint encoder controller,Position sensing at each joint,A,"Encoder drivers, CAN",,concept
