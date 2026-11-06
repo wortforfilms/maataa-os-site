@@ -135,7 +135,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <div class="cards">
 <div class="card"><h3>Isolated by default</h3><p>Every task gets its own memory region from the chip’s MPU. A task that writes where it should not is stopped; the others keep running.</p></div>
 <div class="card"><h3>Apps by signature</h3><p>Features ship as WebAssembly apps signed with ed25519. Each app can make only the system calls its signed manifest grants, and a fuel limit stops it from hanging the system.</p></div>
-<div class="card"><h3>Survives power loss</h3><p>Settings and logs live in an encrypted, authenticated store bound to the chip. A cable pulled mid-write leaves the last value or the new one, never a torn record.</p></div>
+<div class="card"><h3>Survives power loss</h3><p>Settings and logs live in a two-bank store that detects corruption. A cable pulled mid-write leaves the last value or the new one, never a torn record. It does not keep secrets yet: today's builds use a public development key.</p></div>
 <div class="card"><h3>Checkable by anyone</h3><p>The code is open, and every claim on this site has a script and a log you can run yourself.</p></div>
 </div>
 </div></section>
@@ -147,7 +147,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <div class="stack">
 <div class="layer"><b>04 · Signed apps</b><p>WebAssembly capsules, ed25519-signed, each in its own unprivileged task with a fuel limit. Older versions are refused. The Panini grammar engine ships as one of them.</p><span class="pill">Tested on board</span></div>
 <div class="layer"><b>03 · Host channel</b><p>A framed link over the board’s USB serial port. Every install or remove request is signed over a fresh challenge from that boot, so a recorded request cannot be replayed.</p><span class="pill">Tested on board</span></div>
-<div class="layer"><b>02 · Services</b><p>Message passing, five mutexes with priority inheritance, five semaphores, a watchdog, and a sealed store of 64 keys with an owner for each key.</p><span class="pill">Tested on board</span></div>
+<div class="layer"><b>02 · Services</b><p>Message passing, five mutexes with priority inheritance, five semaphores, a watchdog, and a power-loss-safe store of 64 keys with an owner for each key.</p><span class="pill">Tested on board</span></div>
 <div class="layer"><b>01 · Kernel</b><p>Rust, no_std, no heap. Preemptive scheduler with strict priorities, an MPU region per task, and 19 system calls behind a capability mask.</p><span class="pill">Tested on board</span></div>
 </div>
 <p class="note">MAATAA OS has its own kernel and its own WebAssembly runtime, both in Rust; there is no C kernel underneath. Secure boot and a locked debug port are the next layer of work (see Status).</p>
@@ -191,7 +191,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <p class="note"><a href="https://github.com/wortforfilms/os/blob/main/docs/EVIDENCE_MATRIX.md" style="color:var(--pacc)">See every script and log →</a></p>
 <div class="status">
 <div class="st"><h3>Kernel and services</h3><span class="k done">Done (alpha)</span><p>Release 0.1.0-alpha.9; 15 of 15 checks in QEMU on every push.</p></div>
-<div class="st"><h3>Signed apps and sealed store</h3><span class="k done">Done on one board</span><p>STM32F411 (Cortex-M4).</p></div>
+<div class="st"><h3>Signed apps and power-loss-safe store</h3><span class="k done">Done on one board</span><p>STM32F411 (Cortex-M4).</p></div>
 <div class="st"><h3>Production security</h3><span class="k next">Next</span><p>Secure boot, a signed kernel image, a locked debug port and kernel updates in the field.</p></div>
 <div class="st"><h3>Second chip and outside review</h3><span class="k plan">Planned</span><p>An STM32H7 or a RISC-V microcontroller, and an independent security review.</p></div>
 </div>

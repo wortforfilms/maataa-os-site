@@ -19,7 +19,7 @@
   ],
   "store": [
    "Power-loss-safe store",
-   "Settings and logs go to a two-bank flash store, sealed with ChaCha20-Poly1305 under a key bound to the chip. On the F411 board it passed a power-cut test: 9 cuts in 3 runs, no lost or corrupted values."
+   "Settings and logs go to a two-bank flash store, sealed with ChaCha20-Poly1305 so corruption is detected. Today's builds use a public development key, so the store does not keep secrets yet. On the F411 board it passed a power-cut test: 9 cuts in 3 runs, no lost or corrupted values."
   ],
   "wdg": [
    "Watchdog and crash record",
@@ -310,7 +310,7 @@
     ],
     [
      "Operator records",
-     "A tamper-evident log of payload use kept in the sealed store."
+     "A log of payload use kept in the power-loss-safe store. Tamper evidence comes with the production security profile."
     ]
    ],
    "features": [
@@ -322,7 +322,7 @@
    ],
    "feature_notes": {
     "iso": "The pump task, the log and the autopilot link run in separate tasks; a fault in logging cannot stop the pump task.",
-    "store": "The spray log is sealed under a key bound to the chip."
+    "store": "The spray log survives power cuts, and corruption is detected."
    },
    "notyet": [
     "PWM and timer-capture drivers (pump and flow sensor)",

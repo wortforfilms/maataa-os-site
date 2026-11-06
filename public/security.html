@@ -131,11 +131,11 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <li>Apps signed with ed25519; unsigned, wrong-key and older versions refused</li>
 <li>Each app limited to the system calls its signed manifest grants, with a fuel limit per call</li>
 <li>Install and remove requests signed over a fresh challenge each boot, so replays fail</li>
-<li>Store values encrypted and authenticated (ChaCha20-Poly1305), bound to the chip; each key written only by its owner</li>
+<li>Store values sealed with ChaCha20-Poly1305, so corruption is detected; each key written only by its owner</li>
 </ul></div>
 <div class="card"><h3>Not yet</h3><ul style="color:var(--soft);padding-left:18px;margin:8px 0 0">
 <li>Secure boot and a signed kernel image (next milestone)</li>
-<li>A locked debug port: development boards are open, so store data is not confidential</li>
+<li>A per-device secret store key and a locked debug port: today's builds use a public development key, so store data is not confidential</li>
 <li>Kernel updates in the field</li>
 <li>An outside security review</li>
 <li>Out of scope: timing and power side channels, glitching, a compromised build machine</li>
