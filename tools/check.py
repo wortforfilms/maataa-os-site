@@ -20,7 +20,7 @@ BANNED = [r"\bsovereign\b", r"world'?s first", r"india'?s first", r"production[-
 ALLOW_PRODUCTION_READY = ["not yet a production operating system", "Not positioned as a production-ready",
                           "Is it production-ready?", "No production readiness", "\"production-ready\"", "or a \"sovereign\" OS"]
 bad = []
-pages = sorted(PUB.glob("*.html"))
+pages = sorted(PUB.rglob("*.html"))
 for p in pages:
     s = p.read_text()
     text = re.sub(r"<[^>]+>", " ", s)

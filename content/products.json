@@ -1,0 +1,423 @@
+{
+ "_note": "Six pilot concepts with their own pages. Concepts, not products: no specs, prices, certifications or performance figures that have not been measured. Feature text must match the kernel README.",
+ "features": {
+  "iso": [
+   "Tasks walled off by the MPU",
+   "Each task runs unprivileged in its own memory region. A task that faults is stopped; it is not restarted, and the other tasks keep their memory."
+  ],
+  "sched": [
+   "Strict-priority scheduler",
+   "Pre-emptive, round-robin within a priority level, with priority inheritance on mutexes so a low-priority task holding a lock cannot stall an urgent one."
+  ],
+  "caps": [
+   "Signed apps with capability masks",
+   "Apps are signed capsules (ed25519). Every system call is checked against the calling task's capability mask, which comes from its signed manifest."
+  ],
+  "wasm": [
+   "App logic as a WebAssembly capsule",
+   "Device logic can ship as a small signed WebAssembly capsule: 4 KiB memory, a fuel limit per call, installed over the host channel and run from the next boot. Older versions are refused; an interrupted install keeps the old capsule."
+  ],
+  "store": [
+   "Power-loss-safe store",
+   "Settings and logs go to a two-bank flash store, sealed with ChaCha20-Poly1305 under a key bound to the chip. On the F411 board it passed a power-cut test: 9 cuts in 3 runs, no lost or corrupted values."
+  ],
+  "wdg": [
+   "Watchdog and crash record",
+   "The scheduler feeds the hardware watchdog. After a reset the kernel reports the reset cause and a crash record that survived the reset."
+  ],
+  "host": [
+   "Signed host channel",
+   "A COBS-framed, CRC-checked channel over UART for status, telemetry and installs. Requests that change the device must be signed."
+  ],
+  "ipc": [
+   "Mailboxes, mutexes, semaphores",
+   "Tasks talk through kernel mailboxes and share hardware through mutexes and semaphores."
+  ]
+ },
+ "today": "Today MAATAA OS runs on an STM32F411 (Cortex-M4) board and in QEMU. Drivers today: the USART2 serial port, the status LED and the on-chip flash store. There is no network stack and no over-the-air update.",
+ "products": [
+  {
+   "slug": "can-rs485-module",
+   "model": "can-rs485-module",
+   "portfolio": "CAN bus / RS-485 expansion module",
+   "name": "CAN bus / RS-485 expansion module",
+   "tier": "A",
+   "category": "Boards & modules",
+   "hook": "One small DIN-rail module that puts a plant's meters, drives and battery packs on a bus the controller can read.",
+   "summary": "A two-module DIN-rail expansion for controllers that need to talk to Modbus RTU devices on RS-485 or to CAN devices such as battery management systems. The bus driver runs as its own walled-off task; the plant logic runs as a signed app that can only reach the bus through the driver.",
+   "uses": [
+    [
+     "Telecom site controllers",
+     "Read rectifiers, battery packs and energy meters on RS-485 or CAN from one module next to the site controller."
+    ],
+    [
+     "Plant retrofits",
+     "Add Modbus meters and drives to an older panel without replacing its main controller."
+    ],
+    [
+     "Battery cabinets",
+     "Bridge a battery pack's CAN data to a Modbus master that only speaks RS-485."
+    ]
+   ],
+   "features": [
+    "iso",
+    "caps",
+    "sched",
+    "store",
+    "wdg",
+    "host"
+   ],
+   "feature_notes": {
+    "iso": "The bus driver and the app run in separate tasks: a fault in the app cannot write into the driver's buffers.",
+    "store": "Baud rate, node addresses and the register map stay in the power-loss-safe store."
+   },
+   "notyet": [
+    "CAN driver",
+    "RS-485 driver and Modbus RTU master",
+    "An isolated transceiver board",
+    "The production security profile (secure boot, locked debug port) on a second board"
+   ],
+   "form": "DIN rail (35 mm), 2 modules: 36 × 90 × 58 mm. Terminal windows top and bottom, three LED holes and a service USB-C window on the front, vents on both sides.",
+   "material": "PETG or ASA",
+   "layer": "0.2",
+   "infill": "25 %",
+   "fasteners": "4 × M3 heat-set insert, 4 × M3×8 screw",
+   "print": [
+    "Base: print on its back with the DIN clip on the bed; the rail channel bridges 35 mm, so slow the bridge speed.",
+    "Lid: printed face down as exported.",
+    "Test the clip on your own rail before mounting anything heavy."
+   ],
+   "bom": [
+    "Microcontroller: Cortex-M class (the F411 today; the second board is chosen for production)",
+    "Isolated CAN transceiver",
+    "Isolated RS-485 transceiver with fail-safe biasing",
+    "Isolated DC-DC converter from the 24 V panel supply",
+    "TVS diodes and common-mode chokes on both buses",
+    "Two pluggable 4-pole 5.08 mm terminal blocks",
+    "USB-C for the service channel"
+   ],
+   "explode": 26,
+   "mount": "Clip it onto a 35 mm DIN rail in the panel, next to the controller it serves.",
+   "wire": "Wire the 24 V supply and the CAN and RS-485 pairs to the pluggable terminals; terminate each bus at its two ends."
+  },
+  {
+   "slug": "solar-power-monitoring-gateway",
+   "model": "solar-gateway",
+   "portfolio": "Solar power monitoring gateway",
+   "name": "Solar power monitoring gateway",
+   "tier": "A",
+   "category": "Mobility & energy",
+   "hook": "Reads the inverter, the battery and the meter on site, keeps the readings through a power cut, and hands them to a partner's modem.",
+   "summary": "A four-module DIN-rail gateway for solar and hybrid power sites. It polls inverters, battery systems and energy meters over RS-485/Modbus, keeps readings in the power-loss-safe store, and passes them to an uplink through a partner's cellular modem. MAATAA OS is the host for the modem; the modem runs its own firmware.",
+   "uses": [
+    [
+     "Telecom tower sites",
+     "Solar, battery and diesel-generator readings from one place, kept when the site loses power."
+    ],
+    [
+     "Rooftop solar",
+     "Inverter and meter readings for an installer's monitoring service."
+    ],
+    [
+     "Mini-grids and pumps",
+     "Energy logs for solar pumps and village mini-grids where the uplink comes and goes."
+    ]
+   ],
+   "features": [
+    "store",
+    "iso",
+    "caps",
+    "wasm",
+    "wdg",
+    "host"
+   ],
+   "feature_notes": {
+    "store": "Readings are written to the power-loss-safe store first and sent later, so a power cut costs at most the reading being taken.",
+    "wasm": "The register map for each inverter model can ship as a small signed capsule instead of a new firmware image."
+   },
+   "notyet": [
+    "RS-485 driver and Modbus RTU master",
+    "Modem host driver (uplink through a partner's modem)",
+    "Store-and-forward queue and time sync",
+    "The cloud link itself (a tier B step: TCP/IP and TLS)",
+    "The production security profile on a second board"
+   ],
+   "form": "DIN rail (35 mm), 4 modules: 70 × 90 × 60 mm. Terminal windows for RS-485, DC input and dry contacts, an SMA bulkhead hole for the modem antenna, four LED holes and a service USB-C window.",
+   "material": "ASA (outdoor cabinets) or PETG",
+   "layer": "0.2",
+   "infill": "25 %",
+   "fasteners": "4 × M3 heat-set insert, 4 × M3×8 screw",
+   "print": [
+    "Base: print on its back with both DIN clips on the bed; slow the 35 mm bridge.",
+    "Lid: printed face down as exported.",
+    "For sun-exposed cabinets use ASA, not PLA."
+   ],
+   "bom": [
+    "Microcontroller: Cortex-M class (the F411 today; the second board is chosen for production)",
+    "Isolated RS-485 transceiver",
+    "Wide-input DC-DC (site 12–48 V)",
+    "Supercapacitor or small cell for a clean shutdown",
+    "Partner's cellular modem module on UART",
+    "Two dry-contact relays",
+    "SMA bulkhead and antenna cable"
+   ],
+   "explode": 26,
+   "mount": "Clip it onto a 35 mm DIN rail in the site or inverter cabinet.",
+   "wire": "Wire the site DC supply, the RS-485 pair to the inverter, battery and meter, and the antenna cable of the partner's modem."
+  },
+  {
+   "slug": "vibration-machine-health-sensor",
+   "model": "machine-health-sensor",
+   "portfolio": "Vibration and machine-health sensor",
+   "name": "Vibration and machine-health sensor",
+   "tier": "A",
+   "category": "Industrial, agriculture & field",
+   "hook": "A puck that bolts to a pump or fan and tells maintenance which machine is starting to fail.",
+   "summary": "A stud-mounted sensor for pumps, fans, motors and generator sets. An accelerometer and a temperature sensor feed a signal-processing task; alarms and trends go out over a wired bus or a partner's radio module.",
+   "uses": [
+    [
+     "Pumps and fans in plants",
+     "Trend vibration and bearing temperature and flag a change before a breakdown."
+    ],
+    [
+     "Generator sets at tower sites",
+     "Watch the diesel generator's vibration and running hours from the site controller."
+    ],
+    [
+     "Water utilities",
+     "Pump stations where a visit costs more than the sensor."
+    ]
+   ],
+   "features": [
+    "iso",
+    "sched",
+    "store",
+    "wdg",
+    "ipc"
+   ],
+   "feature_notes": {
+    "sched": "Sampling runs at the highest priority; analysis and reporting run below it and cannot delay a sample.",
+    "store": "Baselines and alarm thresholds stay in the store, so a reset does not relearn the machine."
+   },
+   "notyet": [
+    "SPI/I2C accelerometer driver",
+    "ADC and timer-triggered sampling",
+    "The signal-processing app (whether it fits a capsule's fuel limit is not measured; it may need a native task)",
+    "A wired bus (RS-485) or a radio host driver",
+    "The production security profile on a second board"
+   ],
+   "form": "Round puck Ø46 × 30 mm with an M8 stud through the floor, a hex nut pocket underneath and an M12 cable-gland boss on the side. Three-screw cap.",
+   "material": "PETG for fit and demos; a measuring unit needs a machined metal base",
+   "layer": "0.16",
+   "infill": "40 %",
+   "fasteners": "M8 stud and nut, M12 cable gland, 3 × M2.5×6 screw",
+   "print": [
+    "A printed housing damps vibration and changes the reading. Use it for fit, cable routing and demos only.",
+    "Base: floor on the bed; the side gland boss needs a small support.",
+    "Cap: printed face down as exported."
+   ],
+   "bom": [
+    "Microcontroller: Cortex-M4F class (floating point for the analysis)",
+    "Digital MEMS accelerometer on SPI",
+    "Temperature sensor",
+    "RS-485 transceiver or a partner's radio module",
+    "M12 cable gland, M8 stud",
+    "Machined aluminium or steel base for a measuring unit"
+   ],
+   "explode": 18,
+   "mount": "Bolt it to the machine on the M8 stud, close to the bearing you want to watch.",
+   "wire": "Run its cable through the M12 gland to the controller or the radio module."
+  },
+  {
+   "slug": "soil-moisture-sensor",
+   "model": "soil-sensor-node",
+   "portfolio": "Soil-moisture sensor",
+   "name": "Soil-moisture sensor node",
+   "tier": "A",
+   "category": "Industrial, agriculture & field",
+   "hook": "A head box on a stake: a probe in the soil, a small solar cell on top, and readings that survive a flat battery.",
+   "summary": "A field node for soil moisture and temperature. It wakes, reads the probe, stores the reading and sleeps; a partner's long-range radio module carries the readings to a gateway. The power-loss-safe store matters here: a pulled or flat battery must not lose the season's log.",
+   "uses": [
+    [
+     "Drip irrigation scheduling",
+     "Water when the root zone is dry, not on a timer."
+    ],
+    [
+     "Farmer producer organisations",
+     "A few nodes per village block for advisories."
+    ],
+    [
+     "Research plots",
+     "Logged readings for agricultural trials."
+    ]
+   ],
+   "features": [
+    "store",
+    "caps",
+    "wasm",
+    "wdg",
+    "host"
+   ],
+   "feature_notes": {
+    "store": "Each reading is sealed and stored before the node sleeps; the F411 store passed 9 power cuts without loss.",
+    "wasm": "Thresholds and the reading schedule can change through a signed capsule."
+   },
+   "notyet": [
+    "ADC driver and probe excitation",
+    "Low-power sleep mode (the kernel does not sleep the chip yet)",
+    "Host driver for a partner's LoRa module",
+    "Battery and solar charge monitoring",
+    "The production security profile on a second board"
+   ],
+   "form": "Head box 72 × 52 × 34 mm with a socket for a 16 mm stake or conduit and a probe cable hole. The lid has a 52 × 32 mm solar-cell recess and a groove for a 2 mm gasket cord.",
+   "material": "ASA (UV) or PETG",
+   "layer": "0.2",
+   "infill": "30 %",
+   "fasteners": "4 × M3 heat-set insert, 4 × M3×10 screw, 2 mm silicone cord",
+   "print": [
+    "Base: the stake socket hangs below the box; print upright with tree supports under the box floor.",
+    "Lid: printed face down as exported; the gasket groove faces up.",
+    "Seal the cable hole with a gland or sealant. The print alone is not waterproof."
+   ],
+   "bom": [
+    "Low-power Cortex-M microcontroller (a tier B low-power part is the likely production choice)",
+    "Capacitive soil-moisture probe with temperature",
+    "Partner's LoRa module on SPI",
+    "Small solar cell, charger and Li-ion or LiFePO4 cell",
+    "Gasket cord and a cable gland"
+   ],
+   "explode": 22,
+   "mount": "Push the stake into the bed and the probe into the root zone; face the solar cell to the sun.",
+   "wire": "Nothing to wire on site: the probe cable comes fitted; the readings go out by radio."
+  },
+  {
+   "slug": "drone-spray-payload-controller",
+   "model": "spray-payload-controller",
+   "portfolio": "Drone / UAV",
+   "name": "Drone spray-payload controller",
+   "tier": "A+C",
+   "category": "Robots (systems)",
+   "hook": "Runs the pump and nozzles on an agricultural spraying drone. The flight controller stays on the autopilot.",
+   "summary": "A controller for the spraying payload of an agricultural drone: pump speed, nozzle valves, flow and tank level, with a log of what was sprayed on each field. It takes commands from the drone's autopilot over a serial or CAN link. It does not fly the drone, and the pump cut-off must not depend on it.",
+   "uses": [
+    [
+     "Agricultural spraying",
+     "Flow-matched spraying with a per-field log for the farmer and the operator."
+    ],
+    [
+     "Spreading",
+     "The same controller for a granule spreader payload."
+    ],
+    [
+     "Operator records",
+     "A tamper-evident log of payload use kept in the sealed store."
+    ]
+   ],
+   "features": [
+    "iso",
+    "sched",
+    "store",
+    "caps",
+    "wdg"
+   ],
+   "feature_notes": {
+    "iso": "The pump task, the log and the autopilot link run in separate tasks; a fault in logging cannot stop the pump task.",
+    "store": "The spray log is sealed under a key bound to the chip."
+   },
+   "notyet": [
+    "PWM and timer-capture drivers (pump and flow sensor)",
+    "CAN driver, or a MAVLink parser on the serial link",
+    "Integration with an autopilot's payload interface",
+    "The production security profile on a second board"
+   ],
+   "safety": "Not for flight control and not for safety functions. Flight control stays on the drone's autopilot. The pump must have a cut-off the autopilot controls directly. The drone needs its DGCA approvals; this controller does not provide them.",
+   "form": "62 × 46 × 20 mm with a 30.5 × 30.5 mm M3 stack pattern and grommet seats, slots for pump/valve, autopilot link and flow/level connectors, and lid vents.",
+   "material": "PETG or nylon (PA12/PA-CF for flight hardware)",
+   "layer": "0.16",
+   "infill": "35 %",
+   "fasteners": "4 × M3 stack screws with soft-mount grommets, 4 × M2.5 screw for the lid",
+   "print": [
+    "Base: floor on the bed, no supports.",
+    "Lid: printed face down as exported.",
+    "Keep the stack holes clear of sharp edges; fit grommets before flight."
+   ],
+   "bom": [
+    "Microcontroller: Cortex-M class",
+    "Pump driver (brushless ESC or MOSFET stage, depending on the pump)",
+    "Valve drivers with flyback protection",
+    "Flow sensor and tank-level input",
+    "CAN transceiver or a serial link to the autopilot",
+    "Soft-mount grommets"
+   ],
+   "explode": 18,
+   "mount": "Fit it to the payload frame on the 30.5 mm M3 pattern, with soft-mount grommets.",
+   "wire": "Connect the pump and valves, the flow and level sensors, and the link to the autopilot."
+  },
+  {
+   "slug": "motor-actuator-controller",
+   "model": "motor-controller",
+   "portfolio": "Motor and actuator controller",
+   "name": "Motor and actuator controller",
+   "tier": "A",
+   "category": "Robotics controllers",
+   "hook": "One controller per axis, one signed app per axis, and a fault in one axis cannot corrupt another.",
+   "summary": "A controller for brushless and DC motors, servos and valve actuators in conveyors, AGVs and small machines. The current loop and encoder reading run at the top priority; the motion profile and the bus run below them as separate tasks.",
+   "uses": [
+    [
+     "Conveyors and sorters",
+     "Speed and position control for belts and diverters."
+    ],
+    [
+     "AGV and AMR drives",
+     "The wheel controllers of a mobile robot, with navigation on its main computer (tier A+C)."
+    ],
+    [
+     "Valve and damper actuators",
+     "Position control with end-stop sensing."
+    ]
+   ],
+   "features": [
+    "sched",
+    "iso",
+    "caps",
+    "ipc",
+    "store",
+    "wdg"
+   ],
+   "feature_notes": {
+    "sched": "Priority inheritance keeps a low-priority task that holds the bus lock from delaying the control loop.",
+    "store": "Tuning values and fault counts stay in the store across resets."
+   },
+   "notyet": [
+    "PWM driver for the power stage",
+    "Encoder and Hall-sensor capture",
+    "ADC current sensing",
+    "CAN driver",
+    "Measured control-loop timing (worst-case timing has not been analysed)",
+    "The production security profile on a second board"
+   ],
+   "safety": "Not for safety functions. Safe torque off, braking and emergency stop need a separate certified safety controller; MAATAA OS is not certified for safety-critical use.",
+   "form": "92 × 66 × 30 mm with two M4 mounting ears, slots for the motor phases, DC bus, encoder and CAN, and a finned lid.",
+   "material": "PETG for fit; heat needs a metal lid or heatsink",
+   "layer": "0.2",
+   "infill": "25 %",
+   "fasteners": "4 × M3 heat-set insert, 4 × M3×8 screw, 2 × M4 mounting screw",
+   "print": [
+    "Base: floor on the bed, no supports.",
+    "Lid: printed fins-down as exported; the gaps between fins bridge easily.",
+    "A printed lid does not cool a power stage. Use it for fit only."
+   ],
+   "bom": [
+    "Microcontroller: Cortex-M4F class with motor-control timers",
+    "Three-phase gate driver and MOSFET bridge sized for the motor",
+    "Current-sense amplifiers",
+    "Encoder and Hall inputs",
+    "CAN transceiver",
+    "Aluminium lid or heatsink"
+   ],
+   "explode": 22,
+   "mount": "Screw it to the machine frame through the two M4 ears, near the motor.",
+   "wire": "Connect the motor phases, the DC supply, the encoder and the CAN bus; keep motor cables away from encoder cables."
+  }
+ ]
+}

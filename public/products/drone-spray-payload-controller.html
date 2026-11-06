@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#10151F" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<title>Drone spray-payload controller · MAATAA OS</title>
+<meta name="description" content="Drone spray-payload controller: a MAATAA OS product concept with use cases, blueprint, 3D view, guides and printable enclosure files.">
+<meta property="og:title" content="MAATAA OS">
+<meta property="og:description" content="A memory-isolated Rust microkernel for microcontrollers, with signed apps installed at run time.">
+<meta property="og:image" content="https://maataa-os.allb.xyz/assets/board.webp">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link href="/assets/fonts/fonts.css" rel="stylesheet">
+<link rel="alternate" type="application/rss+xml" title="MAATAA OS updates" href="/feed.xml">
+<style>
+:root{--bg:#10151F;--bg2:#182030;--line:#2A3447;--ink:#F3EFE6;--mut:#AEB6C4;--acc:#FF9A1F;--ok:#3DD68C;--paper:#FFFFFF;--pink:#14182E;--pmut:#4A5068;--pacc:#A65200;--soft:#CDD3DD;--bg3:#1E2736;--hdr:rgba(16,21,31,.92);--acc-fill:#FF9A1F;--acc-h:#FFB75C;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'Mukta',system-ui,sans-serif}
+a{color:var(--acc)}a:hover{color:var(--acc-h)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--acc-fill);color:#000;padding:8px 12px;z-index:9}
+header.top{position:sticky;top:0;z-index:5;background:var(--hdr);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:800 21px 'Mukta',sans-serif;letter-spacing:1.5px;color:var(--ink);text-decoration:none;margin-right:auto}.brand .mk{color:var(--ink);flex:none}.brand .wm{color:var(--ink)}.brand .wm span{color:var(--acc)}.brand span{color:var(--acc)}
+nav a{color:var(--mut);text-decoration:none;margin-left:20px;font-size:15px;display:inline-block;padding:10px 0}nav a:hover{color:var(--ink)}
+h1,h2,h3{font-family:'Mukta',sans-serif;font-weight:800;line-height:1.12;margin:0}
+.hi{font:800 22px 'Mukta',sans-serif;color:var(--ink);margin:0 0 10px}.hi span{color:var(--acc)}
+.eyebrow{font-size:14px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--acc);margin:0 0 14px}
+.hero{padding:72px 0 64px}.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:center}
+.hero h1{font-size:clamp(36px,5vw,58px)}.hero p.lead{font-size:20px;color:var(--soft);margin:22px 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:14px}.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;min-height:44px}
+.btn.p{background:var(--acc-fill);color:#1A1205}.btn.p:hover{background:#FFB75C;color:#1A1205}.btn.s{border:1px solid var(--line);color:var(--ink)}
+.facts{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-wrap:wrap;gap:10px 24px;color:var(--mut);font-size:15px}.facts li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:4px;background:var(--ok);margin-right:8px}
+.hero figure{margin:0}.hero img{width:100%;height:auto;border-radius:16px;border:1px solid var(--line);display:block}.hero figcaption{color:var(--mut);font-size:14px;margin-top:10px}
+section.band{padding:80px 0;border-top:1px solid var(--line)}section.light{background:var(--paper);color:var(--pink)}section.light .eyebrow{color:var(--pacc)}section.light p,section.light td{color:var(--pmut)}
+h2{font-size:clamp(28px,3.6vw,42px);max-width:900px}.intro{max-width:820px;color:var(--mut);font-size:18px;margin:18px 0 36px}section.light .intro{color:var(--pmut)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:24px}.card h3{font-size:21px;margin-bottom:8px}.card p{margin:0;color:var(--mut);font-size:16px}
+.stack{display:flex;flex-direction:column;gap:10px}.layer{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:18px;align-items:center;background:#fff;border:1px solid #D5D8E3;border-radius:12px;padding:18px 22px}
+.layer b{font-family:'Mukta',sans-serif;font-size:18px;color:var(--pink)}.layer p{margin:0;font-size:16px}.pill{font-size:13px;font-weight:600;color:#0B6B3E;border:1px solid #0B6B3E;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.note{font-size:15px;margin-top:18px}
+.gal{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:20px}
+.gal li{position:relative;display:flex;flex-direction:column;gap:4px}.gal img{width:100%;height:auto;border-radius:12px;display:block;border:1px solid var(--line)}
+.gal .tag{position:absolute;top:10px;left:10px;background:rgba(16,21,31,.82);color:#E8E4DA;font-size:12px;padding:3px 9px;border-radius:6px}.gal strong{font-family:'Mukta',sans-serif;font-size:18px;margin-top:6px}.gal em{font-style:normal;color:var(--mut);font-size:14px}
+.tbl{overflow-x:auto;border:1px solid #D5D8E3;border-radius:12px;background:#fff}table{border-collapse:collapse;width:100%;min-width:640px}th,td{text-align:left;padding:13px 16px;border-bottom:1px solid #E3E6EE;vertical-align:top;font-size:16px}th{font-size:14px;color:var(--pink);background:#F4F5F9}tr:last-child td{border-bottom:0}
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-top:36px}.st{background:#fff;border:1px solid #D5D8E3;border-radius:12px;padding:20px}.st h3{font-size:18px}.st .k{display:inline-block;font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;margin:8px 0}.done{color:#0B6B3E;border:1px solid #0B6B3E}.next{color:#8A4300;border:1px solid #8A4300}.plan{color:#4A5260;border:1px solid #4A5260}.st p{margin:0;font-size:15px}
+pre{background:#0A0E15;border:1px solid var(--line);border-radius:12px;padding:20px;overflow-x:auto;font:15px/1.7 'JetBrains Mono',monospace;color:#CDE9D7}pre .ok{color:#3DD68C}
+footer{border-top:1px solid var(--line);padding:40px 0 56px;color:var(--mut);font-size:15px}footer .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between}footer p{margin:0}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.layer{grid-template-columns:1fr}nav a{margin-left:0;margin-right:16px}}
+
+.page-hero{padding:64px 0 24px}.page-hero h1{font-size:clamp(32px,4.4vw,50px)}.page-hero p{color:var(--mut);font-size:19px;max-width:820px;margin:16px 0 0}
+.feed{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px}
+.entry{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:24px 26px}.entry time{font:14px 'JetBrains Mono',monospace;color:var(--acc)}.entry h3{font-size:22px;margin:6px 0 10px}.entry p{margin:0 0 8px;color:var(--soft)}.entry ul{margin:6px 0 0;padding-left:20px;color:var(--soft)}.entry .kind{float:right;font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--mut)}
+.live{list-style:none;padding:0;margin:0;font-size:15px}.live li{border-bottom:1px solid var(--line);padding:10px 0;display:flex;gap:14px;flex-wrap:wrap}.live code{font:13px 'JetBrains Mono',monospace;color:var(--acc)}.live span{color:var(--mut)}
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}.col h2{font-size:24px;margin-bottom:14px}.col .item{background:#fff;border:1px solid #D5D8E3;border-radius:12px;padding:18px 20px;margin-bottom:12px}.col .item h3{font-size:18px;color:var(--pink)}.col .item p{margin:6px 0 0;font-size:15px}.gate{display:block;font-size:13px;margin-top:8px;color:#8A4300}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:18px}
+
+details.qa{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:0 22px;margin-bottom:12px}details.qa summary{cursor:pointer;padding:18px 0;font:600 18px 'Mukta',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:16px}details.qa summary::after{content:"+";color:var(--acc);font-size:22px;line-height:1}details.qa[open] summary::after{content:"−"}details.qa div{padding:0 0 18px;color:var(--soft)}details.qa p{margin:0 0 10px}
+.qcat{margin:40px 0 14px;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--acc)}
+.prod{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:22px}.pc{background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.pc .im{position:relative}.pc img{width:100%;height:auto;display:block}.pc .tag{position:absolute;top:10px;left:10px;background:rgba(16,21,31,.85);color:#E8E4DA;font-size:12px;padding:3px 9px;border-radius:6px}.pc .bd{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px}.pc h3{font-size:22px}.pc p{margin:0;color:var(--soft);font-size:16px}.pc dl{margin:6px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:14px}.pc dt{color:var(--mut)}.pc dd{margin:0}
+.person{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start}.avatar{width:200px;height:200px;border-radius:20px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font:700 64px 'Mukta',sans-serif;color:var(--acc)}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}.role{background:#fff;border:1px solid #D5D8E3;border-radius:12px;padding:22px}.role h3{font-size:20px;color:var(--pink)}.role p,.role li{font-size:15px;color:var(--pmut)}.role ul{padding-left:18px;margin:8px 0}.role .meta{font-size:13px;color:#8A4300;font-weight:600}
+.sup{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:18px}
+@media (max-width:700px){.person{grid-template-columns:1fr}}
+
+details.qa{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:0 22px;margin-bottom:12px}details.qa summary{cursor:pointer;padding:18px 0;font:600 18px 'Mukta',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:16px}details.qa summary::after{content:"+";color:var(--acc);font-size:22px;line-height:1}details.qa[open] summary::after{content:"−"}details.qa div{padding:0 0 18px;color:var(--soft)}details.qa p{margin:0 0 10px}
+.qcat{margin:40px 0 14px;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--acc)}
+.prod{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:22px}.pc{background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.pc .im{position:relative}.pc img{width:100%;height:auto;display:block}.pc .tag{position:absolute;top:10px;left:10px;background:rgba(16,21,31,.85);color:#E8E4DA;font-size:12px;padding:3px 9px;border-radius:6px}.pc .bd{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px}.pc h3{font-size:22px}.pc p{margin:0;color:var(--soft);font-size:16px}.pc dl{margin:6px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:14px}.pc dt{color:var(--mut)}.pc dd{margin:0}
+.person{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start}.avatar{width:200px;height:200px;border-radius:20px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font:700 64px 'Mukta',sans-serif;color:var(--acc)}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}.role{background:#fff;border:1px solid #D5D8E3;border-radius:12px;padding:22px}.role h3{font-size:20px;color:var(--pink)}.role p,.role li{font-size:15px;color:var(--pmut)}.role ul{padding-left:18px;margin:8px 0}.role .meta{font-size:13px;color:#8A4300;font-weight:600}
+.sup{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:18px}
+@media (max-width:700px){.person{grid-template-columns:1fr}}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:14px;margin-top:28px}.tier{background:#fff;border:1px solid #D5D8E3;border-radius:12px;padding:16px 18px}.tier b{font-family:'Mukta',sans-serif;font-size:17px}.tier p{margin:6px 0 0;font-size:14px;color:var(--pmut)}.tier .n{font:700 26px 'Mukta',sans-serif}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:16px}.pi{background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}.pi .im{position:relative;aspect-ratio:480/336;background:var(--bg3)}.pi img{width:100%;height:100%;object-fit:cover;display:block}.pi .ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--mut);font-size:13px}.pi .cr{position:absolute;bottom:8px;left:8px;background:rgba(16,21,31,.85);color:#E8E4DA;font-size:11px;padding:2px 8px;border-radius:5px}.pi .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}.pi h3{font-size:17px}.pi p{margin:0;font-size:14px;color:var(--soft)}.pi .nd{font-size:13px;color:var(--mut)}.tb{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;background:#F3EFE6;align-self:flex-start}.ct{font-size:12px;color:var(--acc)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.jump a{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;color:var(--ink);text-decoration:none}
+/* layout: sticky footer */
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}main{flex:1 0 auto}
+.brand{min-height:44px}.nw{white-space:nowrap}
+.jump a{min-height:44px;display:inline-flex;align-items:center}
+/* mobile menu (no JS: details/summary) */
+.mnav{display:none}
+@media (max-width:860px){
+header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
+.dnav{display:none}.mnav{display:block}
+.mnav summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:10px;color:var(--ink);font-weight:600;font-size:15px}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav[open] summary{background:var(--bg2)}
+.mnav .bars{display:block;width:18px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor}
+.mnav nav{position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:4px 24px 20px;max-height:calc(100dvh - 56px);overflow-y:auto}
+.mnav nav a{display:flex;align-items:center;min-height:48px;margin:0;padding:0;border-bottom:1px solid var(--line);font-size:17px;color:var(--ink)}
+.mnav .mg2{display:flex;flex-wrap:wrap;gap:0 20px;margin-top:8px}
+.mnav .mg2 a{border:0;font-size:15px;color:var(--mut);min-height:44px}
+}
+@media (max-width:400px){.mnav .ml{display:none}.mnav summary{padding:0;width:44px;justify-content:center}.brand .wm{font-size:18px}}
+/* long pages: side contents list */
+.toc{display:none}
+@media (min-width:1024px){
+.withside{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;align-items:start}
+.toc{display:block;position:sticky;top:88px;padding-top:8px}
+.toc p{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:0 0 10px}
+.toc a{margin:0;display:flex;align-items:center;min-height:44px;color:var(--mut);text-decoration:none;font-size:15px;line-height:1.3;border-left:2px solid var(--line);padding-left:14px}
+.toc a:hover{color:var(--ink);border-left-color:var(--acc)}
+.withside .wrap{max-width:none;padding:0}
+.jump.has-toc{display:none}
+}
+
+/* theme: follows the device setting (no JS on this site, so no manual switch) */
+@media (prefers-color-scheme: light){:root{--bg:#FFFFFF;--bg2:#F4F5F9;--bg3:#E3E6EE;--line:#D5D8E3;--ink:#14182E;--mut:#4A5068;--soft:#2E3450;--acc:#A65200;--acc-h:#7A3C00;--ok:#1A7F4E;--paper:#F4F5F9;--hdr:rgba(255,255,255,.92);color-scheme:light}}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--acc-fill);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media (forced-colors: active){.btn,.mnav summary,.jump a{border:1px solid}}
+
+/* product concept pages */
+.phero{position:relative;overflow:hidden;background:radial-gradient(1200px 500px at 85% 20%,rgba(255,154,31,.16),transparent 60%),linear-gradient(160deg,#1F2A5C 0%,#10151F 70%);color:#E8EDF8;border-bottom:1px solid var(--line)}
+.phero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;align-items:center;padding-top:56px;padding-bottom:48px}
+.phero h1{font-size:clamp(32px,4.6vw,54px);line-height:1.05;color:#fff}
+.phero .hook{font-size:20px;color:#C9D2EA;margin:18px 0 0;max-width:640px}
+.phero .eyebrow{color:#FFB255}
+.phero .art{position:relative;border-radius:20px;background:#F7F7F7;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.phero .art img{display:block;width:100%;height:auto;border-radius:20px}
+.phero .art::after{content:"";position:absolute;inset:auto 18px -10px 18px;height:8px;border-radius:0 0 12px 12px;background:#FF9A1F;opacity:.9}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font:600 13px 'JetBrains Mono',monospace;letter-spacing:.04em;border:1px solid rgba(232,237,248,.35);border-radius:999px;padding:6px 12px;color:#E8EDF8}
+.chip.warn{border-color:#FF9A1F;color:#FFB255}
+.phero .jump{margin:26px 0 0;padding:0}.phero .jump a{color:#E8EDF8;border-color:rgba(232,237,248,.35)}
+@media (max-width:860px){.phero .wrap{grid-template-columns:minmax(0,1fr)}}
+.cards3{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:18px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.card h3{font-size:19px;margin:0 0 6px}.card p{margin:0;color:var(--soft);font-size:16px}
+.card .k{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin:0 0 8px}
+.glance{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:start}
+.glance dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.glance dt{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding-top:3px}.glance dd{margin:0;color:var(--soft)}
+@media (max-width:860px){.glance{grid-template-columns:minmax(0,1fr)}}
+.viewer{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:860px){.viewer{grid-template-columns:minmax(0,1fr)}}
+.stage{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#F7F7F7}
+.tt{aspect-ratio:4/3;background-repeat:no-repeat;background-size:2400% 100%;background-position:0 0;animation:tt 8s steps(23) infinite}
+.tt:hover{animation-play-state:paused}
+@keyframes tt{to{background-position:100% 0}}
+.stage{display:flex;flex-wrap:wrap;gap:6px;padding:0 0 10px;background:#fff}.stage>.tt{order:-1;flex-basis:100%;border-bottom:1px solid #DDD;margin-bottom:4px;background-color:#F7F7F7}.stage label:first-of-type{margin-left:10px}
+.stage input{position:absolute;opacity:0;width:1px;height:1px}
+.stage label{cursor:pointer;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 12px;border:1px solid #C9CDD8;border-radius:10px;font:600 13px 'JetBrains Mono',monospace;color:#14182E}
+.stage input:checked+label{background:#1F2A5C;color:#fff;border-color:#1F2A5C}
+.stage input:focus-visible+label{outline:3px solid var(--acc-fill);outline-offset:2px}
+.files{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;font-size:15px}.files td:first-child{overflow-wrap:anywhere}.files col.c1{width:46%}.files col.c3{width:76px}.files td,.files th{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}.files th{background:transparent;font:600 12px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.files td:last-child{white-space:nowrap;color:var(--mut)}
+.bp{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#1F2A5C}.bp img{display:block;width:100%;height:auto}
+.scrollx{overflow-x:auto}.scrollx .bp{min-width:640px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
+.feat .card h3{font-size:18px}.feat .card .note{margin-top:10px;font-size:15px;color:var(--ink);border-left:3px solid var(--acc-fill);padding-left:10px}
+ul.ny{margin:8px 0 0;padding-left:20px;color:var(--soft)}ul.ny li{margin:4px 0}
+.safety{border:2px solid #FF9A1F;border-radius:14px;padding:18px 22px;background:rgba(255,154,31,.08);margin-top:22px}.safety b{color:var(--acc)}
+.guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:18px}
+.guide{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.guide h3{font-size:22px;margin:0}.guide .who{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin:0 0 6px}
+.guide ol,.guide ul{padding-left:20px;margin:10px 0 0;color:var(--soft)}.guide li{margin:6px 0}
+.guide .flag{font-size:13px;color:var(--mut);margin:12px 0 0}
+.prodnav{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px}
+.prodnav a{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px;text-decoration:none;color:var(--ink);min-height:44px}
+.prodnav a:hover{border-color:var(--acc)}.prodnav img{width:72px;height:54px;object-fit:cover;border-radius:8px;background:#F7F7F7}
+.pi .more{margin-top:4px;font-size:14px;font-weight:600}
+.band.light a:not(.btn){color:#A65200}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="/" aria-label="MAATAA OS home"><svg class="mk" viewBox="150 128 1092 420" width="73" height="28" aria-hidden="true"><g transform="translate(1330 0) rotate(90)"><rect x="152" y="576" width="388" height="112" fill="#FF9A1F"/><g fill="none" stroke="currentColor" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"><path d="M290 350 C240 200 262 112 400 115 C468 118 505 165 522 208"/><path d="M152 372 H520"/><path d="M152 550 H520"/><path d="M152 712 H515"/><path d="M152 873 H515"/><path d="M300 895 C285 985 292 1110 362 1148 C430 1180 472 1110 432 1060 C392 1012 282 1030 158 1092"/></g></g></svg><span class="wm">MAATAA <span>OS</span></span></a>
+<nav class="dnav" aria-label="Main"><a href="/vision">Vision</a><a href="/portfolio" aria-current="page" style="color:var(--ink)">Portfolio</a><a href="/updates">Updates</a><a href="/roadmap">Roadmap</a><a href="/team">Team</a><a href="/faq">FAQ</a><a href="/support">Support</a><a href="https://github.com/wortforfilms/os">GitHub ↗</a></nav><details class="mnav"><summary><span class="bars" aria-hidden="true"></span><span class="ml">Menu</span><span class="skip">Open menu</span></summary><nav aria-label="Main"><a href="/vision">Vision</a><a href="/portfolio" aria-current="page" style="color:var(--ink)">Portfolio</a><a href="/updates">Updates</a><a href="/roadmap">Roadmap</a><a href="/team">Team</a><a href="/faq">FAQ</a><a href="/support">Support</a><a href="https://github.com/wortforfilms/os">GitHub ↗</a><div class="mg2"><a href="/security">Security</a><a href="/company">Company</a><a href="/press">Press</a><a href="/status">Status</a><a href="/privacy">Privacy</a></div></nav></details>
+</div></header>
+<main id="main">
+<section class="phero"><div class="wrap"><div><p class="eyebrow">Product concept · Robots (systems)</p><h1>Drone spray-payload controller</h1><p class="hook">Runs the pump and nozzles on an agricultural spraying drone. The flight controller stays on the autopilot.</p><div class="chips"><span class="chip warn">Concept · not a product</span><span class="chip">Tier A + C · MAATAA inside</span><span class="chip">Open 3D files</span></div><nav class="jump" aria-label="On this page"><a href=#uses>Use cases</a><a href=#view>3D view</a><a href=#blueprint>Blueprint</a><a href=#os>MAATAA OS</a><a href=#guides>Guides</a><a href=#print>3D print</a></nav></div><div class="art"><img src="/products/files/drone-spray-payload-controller/hero.webp" alt="Exploded CAD view of the Drone spray-payload controller concept enclosure, lid lifted" width="1400" height="1000"></div></div></section>
+<section class="band"><div class="wrap glance"><div><p class="eyebrow">At a glance</p><h2>What it is</h2><p class="intro">A controller for the spraying payload of an agricultural drone: pump speed, nozzle valves, flow and tank level, with a log of what was sprayed on each field. It takes commands from the drone&#x27;s autopilot over a serial or CAN link. It does not fly the drone, and the pump cut-off must not depend on it.</p></div><dl><dt>Status</dt><dd>Concept. No hardware has been built or tested.</dd><dt>Tier</dt><dd>A + C · MAATAA inside</dd><dt>Enclosure</dt><dd>62 × 46 × 20 mm with a 30.5 × 30.5 mm M3 stack pattern and grommet seats, slots for pump/valve, autopilot link and flow/level connectors, and lid vents.</dd><dt>Portfolio</dt><dd><a href="/portfolio">Drone / UAV</a></dd></dl></div></section>
+<section class="band light" id="uses"><div class="wrap"><p class="eyebrow">Use cases</p><h2>Where it would work</h2><div class="cards3"><div class="role"><h3>Agricultural spraying</h3><p>Flow-matched spraying with a per-field log for the farmer and the operator.</p></div><div class="role"><h3>Spreading</h3><p>The same controller for a granule spreader payload.</p></div><div class="role"><h3>Operator records</h3><p>A tamper-evident log of payload use kept in the sealed store.</p></div></div></div></section>
+<section class="band" id="view"><div class="wrap viewer"><div><style>#v1:checked~.tt{animation:none;background-position:0.0000% 0}#v2:checked~.tt{animation:none;background-position:17.3913% 0}#v3:checked~.tt{animation:none;background-position:34.7826% 0}#v4:checked~.tt{animation:none;background-position:52.1739% 0}#v5:checked~.tt{animation:none;background-position:69.5652% 0}#v6:checked~.tt{animation:none;background-position:86.9565% 0}</style><div class="stage" role="group" aria-label="View angle"><input type="radio" name="ang" id="v0" checked><label for="v0">Spin</label><input type="radio" name="ang" id="v1"><label for="v1">0°</label><input type="radio" name="ang" id="v2"><label for="v2">60°</label><input type="radio" name="ang" id="v3"><label for="v3">120°</label><input type="radio" name="ang" id="v4"><label for="v4">180°</label><input type="radio" name="ang" id="v5"><label for="v5">240°</label><input type="radio" name="ang" id="v6"><label for="v6">300°</label><div class="tt" role="img" aria-label="Turntable view of the Drone spray-payload controller concept enclosure" style="background-image:url(/products/files/drone-spray-payload-controller/turntable.webp)"></div></div></div><div><p class="eyebrow">3D view</p><h2>Turn it around</h2><p class="intro">A turntable of 24 CAD renders of the printable enclosure, with a placeholder board inside. Pick an angle to stop it; hover pauses it. With reduced motion turned on, it stays still.</p><table class="files"><colgroup><col class="c1"><col><col class="c3"></colgroup><thead><tr><th>File</th><th>What</th><th>Size</th></tr></thead><tbody><tr><td><a href="/products/files/drone-spray-payload-controller/drone-spray-payload-controller.3mf" download>drone-spray-payload-controller.3mf</a></td><td>Both parts on one plate (3MF)</td><td>71 KiB</td></tr><tr><td><a href="/products/files/drone-spray-payload-controller/drone-spray-payload-controller-base.stl" download>drone-spray-payload-controller-base.stl</a></td><td>Base (STL, print orientation)</td><td>176 KiB</td></tr><tr><td><a href="/products/files/drone-spray-payload-controller/drone-spray-payload-controller-lid.stl" download>drone-spray-payload-controller-lid.stl</a></td><td>Lid (STL, print orientation)</td><td>144 KiB</td></tr><tr><td><a href="/products/files/drone-spray-payload-controller/spray-payload-controller.scad" download>spray-payload-controller.scad</a></td><td>Parametric source (OpenSCAD)</td><td>2 KiB</td></tr><tr><td><a href="/products/files/drone-spray-payload-controller/maataa-lib.scad" download>maataa-lib.scad</a></td><td>Shared library the source includes</td><td>3 KiB</td></tr><tr><td><a href="/products/files/drone-spray-payload-controller/blueprint.svg" download>blueprint.svg</a></td><td>Blueprint (SVG)</td><td>38 KiB</td></tr></tbody></table></div></div></section>
+<section class="band light" id="blueprint"><div class="wrap"><p class="eyebrow">Blueprint</p><h2>Enclosure drawing</h2><p class="intro" style="color:var(--pmut)">Top view of the lid, front and side views of the closed enclosure, and a section through the base. Dimensions in millimetres, taken from the same model as the print files.</p><div class="scrollx" tabindex="0" role="region" aria-label="Blueprint, scrolls sideways on small screens"><div class="bp"><a href="/products/files/drone-spray-payload-controller/blueprint.svg"><img src="/products/files/drone-spray-payload-controller/blueprint.svg" alt="Blueprint of the Drone spray-payload controller concept enclosure with top, front and side views, a section and a title block" width="1200" height="820" loading="lazy"></a></div></div></div></section>
+<section class="band" id="os"><div class="wrap"><p class="eyebrow">MAATAA OS</p><h2>What the OS brings, and what is missing</h2><p class="intro">Today MAATAA OS runs on an STM32F411 (Cortex-M4) board and in QEMU. Drivers today: the USART2 serial port, the status LED and the on-chip flash store. There is no network stack and no over-the-air update. Release 0.1.0-alpha.9.</p><div class="feat"><div class="card"><p class="k">Works today</p><h3>Tasks walled off by the MPU</h3><p>Each task runs unprivileged in its own memory region. A task that faults is stopped; it is not restarted, and the other tasks keep their memory.</p><p class="note">Here: The pump task, the log and the autopilot link run in separate tasks; a fault in logging cannot stop the pump task.</p></div><div class="card"><p class="k">Works today</p><h3>Strict-priority scheduler</h3><p>Pre-emptive, round-robin within a priority level, with priority inheritance on mutexes so a low-priority task holding a lock cannot stall an urgent one.</p></div><div class="card"><p class="k">Works today</p><h3>Power-loss-safe store</h3><p>Settings and logs go to a two-bank flash store, sealed with ChaCha20-Poly1305 under a key bound to the chip. On the F411 board it passed a power-cut test: 9 cuts in 3 runs, no lost or corrupted values.</p><p class="note">Here: The spray log is sealed under a key bound to the chip.</p></div><div class="card"><p class="k">Works today</p><h3>Signed apps with capability masks</h3><p>Apps are signed capsules (ed25519). Every system call is checked against the calling task&#x27;s capability mask, which comes from its signed manifest.</p></div><div class="card"><p class="k">Works today</p><h3>Watchdog and crash record</h3><p>The scheduler feeds the hardware watchdog. After a reset the kernel reports the reset cause and a crash record that survived the reset.</p></div></div><div class="card" style="margin-top:18px"><p class="k">Not yet</p><h3>Work before this concept can run</h3><ul class="ny"><li>PWM and timer-capture drivers (pump and flow sensor)</li><li>CAN driver, or a MAVLink parser on the serial link</li><li>Integration with an autopilot&#x27;s payload interface</li><li>The production security profile on a second board</li></ul></div><div class="safety"><b>Safety.</b> Not for flight control and not for safety functions. Flight control stays on the drone&#x27;s autopilot. The pump must have a cut-off the autopilot controls directly. The drone needs its DGCA approvals; this controller does not provide them.</div></div></section>
+<section class="band light" id="guides"><div class="wrap"><p class="eyebrow">Guides</p><h2>For users, makers and partners</h2><p class="intro" style="color:var(--pmut)">Concept briefs. They describe the intended use; none of the steps below is a tested procedure.</p><div class="guides"><div class="role"><p class="meta">User guide</p><h3>Using it</h3><ol><li>Fit it to the payload frame on the 30.5 mm M3 pattern, with soft-mount grommets.</li><li>Connect the pump and valves, the flow and level sensors, and the link to the autopilot.</li><li>Commission it from a laptop over the service port: the host channel reports status and accepts signed setting changes.</li><li>Leave it running. It keeps its settings and logs through a power cut.</li><li>After any reset it reports why it reset. Send that report to the device maker.</li></ol></div><div class="role"><p class="meta">Manufacturer guide</p><h3>Building it</h3><ol><li>Pick the hardware from the class list below; the MCU must run MAATAA OS (the F411 today, the production board later).</li><li>Bring up the board support: clocks, pins and the service UART.</li><li>Add the missing drivers listed under Not yet as walled-off tasks, each with only the capabilities it needs in its signed manifest.</li><li>Write the device logic as a signed capsule or a task; keep settings in the power-loss-safe store.</li><li>Run the kernel&#x27;s QEMU checks, then a power-cut test on your board, before any field unit.</li><li>Print the enclosure from the files below, then change the parametric source to your real board.</li></ol><p style="margin-top:12px"><b style="color:var(--pink)">Hardware classes</b></p><ul><li>Microcontroller: Cortex-M class</li><li>Pump driver (brushless ESC or MOSFET stage, depending on the pump)</li><li>Valve drivers with flyback protection</li><li>Flow sensor and tank-level input</li><li>CAN transceiver or a serial link to the autopilot</li><li>Soft-mount grommets</li></ul><p class="meta" style="margin-top:10px">Classes, not part numbers or prices: these depend on the maker.</p></div><div class="role"><p class="meta">Partner guide</p><h3>Working with us</h3><ol><li>Tell us the device and the volume: partners@allb.xyz.</li><li>We agree a pilot: one board, the missing drivers, and the tests that decide pass or fail.</li><li>Licensing and support are priced per device and per year; porting to a new board is priced per project. The FAQ lists today&#x27;s starting points.</li><li>Before any field pilot: the production security profile on a second board and an outside review.</li><li>You build and sell the hardware; we license and support the OS.</li></ol><p><a href="/faq#business">Business FAQ</a> · <a href="mailto:partners@allb.xyz?subject=MAATAA%20OS%20design%20partner">partners@allb.xyz</a></p></div></div></div></section>
+<section class="band" id="print"><div class="wrap glance"><div><p class="eyebrow">3D print</p><h2>Print the enclosure</h2><p class="intro">Two parts, exported in print orientation and checked to be closed solids. The board inside is a placeholder: change the sizes in <code>spray-payload-controller.scad</code> when a real board exists.</p><ul class="ny"><li>Base: floor on the bed, no supports.</li><li>Lid: printed face down as exported.</li><li>Keep the stack holes clear of sharp edges; fit grommets before flight.</li></ul></div><dl><dt>Material</dt><dd>PETG or nylon (PA12/PA-CF for flight hardware)</dd><dt>Layers</dt><dd>0.16 mm</dd><dt>Infill</dt><dd>35 %</dd><dt>Walls</dt><dd>3 perimeters</dd><dt>Fasteners</dt><dd>4 × M3 stack screws with soft-mount grommets, 4 × M2.5 screw for the lid</dd><dt>Files</dt><dd><a href="/products/files/drone-spray-payload-controller/drone-spray-payload-controller.3mf" download>drone-spray-payload-controller.3mf</a></dd><dt>Licence</dt><dd>CC BY 4.0</dd></dl></div></section>
+<section class="band light"><div class="wrap"><p class="eyebrow">More concepts</p><h2>The other five pilot concepts</h2><div class="prodnav"><a href="/products/can-rs485-module"><img src="/products/files/can-rs485-module/poster.webp" alt="" width="72" height="54" loading="lazy"><span style="color:var(--pink)">CAN bus / RS-485 expansion module</span></a><a href="/products/solar-power-monitoring-gateway"><img src="/products/files/solar-power-monitoring-gateway/poster.webp" alt="" width="72" height="54" loading="lazy"><span style="color:var(--pink)">Solar power monitoring gateway</span></a><a href="/products/vibration-machine-health-sensor"><img src="/products/files/vibration-machine-health-sensor/poster.webp" alt="" width="72" height="54" loading="lazy"><span style="color:var(--pink)">Vibration and machine-health sensor</span></a><a href="/products/soil-moisture-sensor"><img src="/products/files/soil-moisture-sensor/poster.webp" alt="" width="72" height="54" loading="lazy"><span style="color:var(--pink)">Soil-moisture sensor node</span></a><a href="/products/motor-actuator-controller"><img src="/products/files/motor-actuator-controller/poster.webp" alt="" width="72" height="54" loading="lazy"><span style="color:var(--pink)">Motor and actuator controller</span></a></div><p class="note" style="margin-top:18px"><a href="/products/">All six</a> · <a href="/portfolio">All 115 concepts</a></p></div></section>
+</main>
+<footer><div class="wrap">
+<div><p><strong style="color:var(--ink)">MAATAA OS</strong> · A product of ALL B Vegan Private Limited, Delhi · Built in India</p>
+<p style="margin-top:8px;font-size:13px">© 2026 ALL B Vegan Private Limited · CIN U85100DL2022PTC394159. Device images are AI-generated concept renders, not products. MAATAA OS is alpha software and is not certified for safety-critical use.</p></div>
+<p><a href="/vision">Vision</a> · <a href="/portfolio">Portfolio</a> · <a href="/updates">Updates</a> · <a href="/roadmap">Roadmap</a> · <a href="/team">Team &amp; careers</a> · <a href="/faq">FAQ</a> · <a href="/support">Support</a> · <a href="/security">Security</a> · <a href="/company">Company</a> · <a href="/press">Press</a> · <a href="/status">Status</a> · <a href="/privacy">Privacy &amp; terms</a> · <a href="/feed.xml">RSS</a> · <a href="https://github.com/wortforfilms/os">GitHub</a> · Hemant Kumar Dixit, <a href="mailto:hello@allb.xyz">hello@allb.xyz</a></p>
+</div></footer>
+</body>
+</html>

@@ -66,7 +66,7 @@ Robotics controllers,Robot compute controller,The robot's main computer,C,Applic
 Robotics controllers,Vision AI module,Object detection and inspection,C,"AI accelerator, Linux",,concept
 Robotics controllers,Robot fleet gateway,Connectivity and coordination for many robots,C,"Full network stack, Linux",,concept
 Robotics controllers,Flexible robot interconnect,Flex PCB connections near moving joints,H,Hardware only,,concept
-Robots (systems),Drone / UAV,Inspection and defence drones,A+C,MAATAA on the flight controller; payload computer on Linux,DGCA rules,concept
+Robots (systems),Drone / UAV,Agricultural spraying and inspection drones,A+C,MAATAA on the spray-payload controller; flight control stays on the autopilot; payload computer on Linux,DGCA rules,concept
 Robots (systems),AMR / warehouse robot,Moves goods in warehouses,A+C,"MAATAA on motor, safety and I/O controllers",,concept
 Robots (systems),AGV platform,Follows fixed routes in plants,A+C,MAATAA on drive and safety controllers,,concept
 Robots (systems),Robotic arm,Industrial or educational arm,A+C,MAATAA on joint controllers,,concept
