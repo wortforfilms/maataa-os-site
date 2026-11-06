@@ -3,7 +3,7 @@ Boards & modules,MaataaOS flexible compute board,Flexible PCB with a microcontro
 Boards & modules,System-on-module compute card,Plug-in compute card for products that need a full application processor,C,Linux-class processor; MAATAA on a companion MCU,,concept
 Boards & modules,Carrier board,Base board that hosts a compute card and its connectors,C,Follows the compute card,,concept
 Boards & modules,Industrial I/O expansion board,Isolated digital and analog I/O for machines,A,"GPIO, ADC drivers",,concept
-Boards & modules,GPIO / serial expansion,"Sensors, relays and industrial equipment connectivity",A,"GPIO, UART, SPI, I2C (present today)",,concept
+Boards & modules,GPIO / serial expansion,"Sensors, relays and industrial equipment connectivity",A,"GPIO, SPI and I2C drivers (UART present today)",,concept
 Boards & modules,Motor-driver PCB,High-current motor stage with its control MCU,A,"PWM, ADC, encoder drivers",,concept
 Boards & modules,CAN bus / RS-485 expansion module,Field-bus connection for vehicles and plants,A,CAN and RS-485 drivers,,concept
 Boards & modules,Energy-monitoring module,"Current, voltage and energy measurement",A,"ADC, metering app",,concept
@@ -19,8 +19,8 @@ Boards & modules,LoRa / long-range radio module,"Long-range, low-power radio",H,
 Boards & modules,GNSS positioning module,Satellite positioning,H,Runs vendor firmware; MAATAA is the host over UART,,concept
 Boards & modules,Flexible sensor tail,Sensor connections on curved or wearable surfaces,H,"Flex PCB, no OS",,concept
 Boards & modules,Thermal enclosure kit,Heat management and protective enclosure,H,"Mechanical, no OS",,concept
-Home & building,Sensor hub,"Temperature, humidity, air quality and other inputs",A,I2C/SPI sensors (present today),,concept
-Home & building,Remote button and status panel,"Simple trigger, alert and device status",A,"GPIO, LEDs, UART (present today)",,concept
+Home & building,Sensor hub,"Temperature, humidity, air quality and other inputs",A,I2C/SPI sensor drivers,,concept
+Home & building,Remote button and status panel,"Simple trigger, alert and device status",A,"GPIO driver (UART and status LED present today)",,concept
 Home & building,Smart switch,Wall switch with local control,A,Radio stack (Thread/BLE) for a connected version,,concept
 Home & building,Smart dimmer,Light dimming,A,PWM or phase control; radio stack,,concept
 Home & building,Home automation wall switch,Multi-button scene switch,A,"GPIO, radio stack",,concept
@@ -43,7 +43,7 @@ Home & building,Home and office hub,Local automation and control,B,Thread/Matter
 "Industrial, agriculture & field",Soil-moisture sensor,Soil sensing for farms,A,"ADC, low-power mode",,concept
 "Industrial, agriculture & field",Weather station,"Wind, rain and temperature",A,Sensor drivers,,concept
 "Industrial, agriculture & field",Greenhouse controller,Climate and irrigation in greenhouses,A,"GPIO, sensors, store",,concept
-"Industrial, agriculture & field",Cold-chain data logger,Temperature records for medicines and food,A,Sensors; power-loss-safe store (present today),,concept
+"Industrial, agriculture & field",Cold-chain data logger,Temperature records for medicines and food,A,Sensor drivers; power-loss-safe store (present today),,concept
 "Industrial, agriculture & field",Solar inverter monitor,Inverter and string monitoring,A,RS-485/Modbus,,concept
 "Industrial, agriculture & field",Remote pump controller,Pump control in the field,A,"GPIO, relay, radio host",,concept
 "Industrial, agriculture & field",Industrial control panel,Machine and line monitoring and control,A,"GPIO, CAN; a large HMI screen would be C",,concept
@@ -52,7 +52,7 @@ Home & building,Home and office hub,Local automation and control,B,Thread/Matter
 "Industrial, agriculture & field",Industrial protocol gateway,"CAN, RS-485 and Ethernet bridge",B,Ethernet and TCP/IP stack,,concept
 "Industrial, agriculture & field",Edge gateway,Connects sensors to local or cloud services,B,"TCP/IP, TLS; heavy local processing would be C",,concept
 Robotics controllers,Motor and actuator controller,"Motors, servos and actuators",A,"PWM, encoders, CAN",,concept
-Robotics controllers,Robot I/O safety board,"Emergency stop, limit switches, safety inputs",A,GPIO; isolation (present today),functional safety,concept
+Robotics controllers,Robot I/O safety board,"Emergency stop, limit switches, safety inputs",A,GPIO, isolation; needs a safety-certified OS,functional safety,concept
 Robotics controllers,Emergency-stop pendant,Hand-held stop and control,A,"GPIO, radio or cable link",functional safety,concept
 Robotics controllers,Robotic arm controller,Joint-level control for arms,A,"PWM, encoders; the arm's planner would be C",,concept
 Robotics controllers,Robot joint encoder controller,Position sensing at each joint,A,"Encoder drivers, CAN",,concept
