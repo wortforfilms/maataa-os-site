@@ -1,6 +1,6 @@
 {
  "release": "0.1.0-alpha.9",
- "kernel_bytes": 104860,
+ "kernel_bytes": 111880,
  "kernel_budget_kib": 128,
  "ram_kib": 84,
  "smoke_checks": "15 of 15",
