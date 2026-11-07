@@ -164,7 +164,7 @@ def product(p):
     others = [q for q in D["products"] if q["slug"] != s]
     b.append('<section class="band light"><div class="wrap"><p class="eyebrow">More concepts</p><h2>The other five pilot concepts</h2><div class="prodnav">'
              + "".join(f'<a href="/products/{q["slug"]}"><img src="/products/files/{q["slug"]}/poster.webp" alt="" width="72" height="54" loading="lazy"><span style="color:var(--pink)">{e(q["name"])}</span></a>' for q in others)
-             + '</div><p class="note" style="margin-top:18px"><a href="/products/">All six</a> · <a href="/portfolio">All 115 concepts</a></p></div></section>')
+             + '</div><p class="note" style="margin-top:18px"><a href="/products/">All six</a> · <a href="/portfolio">All 112 concepts</a></p></div></section>')
     page(p["name"], f'{p["name"]}: a MAATAA OS product concept with use cases, blueprint, 3D view, guides and printable enclosure files.', "\n".join(b), f"products/{s}.html")
 
 def index():
@@ -172,7 +172,7 @@ def index():
         f'<article class="pi"><a href="/products/{p["slug"]}" style="text-decoration:none;color:inherit"><div class="im" style="background:#F7F7F7"><img src="/products/files/{p["slug"]}/poster.webp" alt="CAD render of the {e(p["name"])} concept enclosure" width="480" height="360" loading="lazy" style="object-fit:contain"></div>'
         f'<div class="bd"><h3>{e(p["name"])}</h3><p>{e(p["hook"])}</p><p class="nd">Tier {e(p["tier"])} · concept</p></div></a></article>' for p in D["products"])
     body = ('<section class="page-hero"><div class="wrap"><p class="eyebrow">Products · concepts</p><h1>Six concepts, worked out in detail.</h1>'
-            '<p>Picked from the 115 in the portfolio because they match the first pilot conversations we want to have. Each has use cases, a blueprint, a 3D view, guides for users, makers and partners, and enclosure files you can print. None is a product yet.</p></div></section>'
+            '<p>Picked from the 112 in the portfolio because they match the first pilot conversations we want to have. Our focus is three families: Field I/O (the CAN / RS-485 module), Gateway (the solar gateway) and Motion (the motor controller and the drone spray-payload controller). The vibration and soil sensors are later concepts. Each has use cases, a blueprint, a 3D view, guides for users, makers and partners, and enclosure files you can print. None is a product yet.</p></div></section>'
             f'<section class="band" style="border-top:0;padding-top:8px"><div class="wrap"><h2 class="vh">The six concepts</h2><div class="pgrid">{cards}</div></div></section>')
     page("Product concepts", "Six MAATAA OS product concepts with blueprints, 3D views, guides and printable enclosure files.", body, "products/index.html")
 
