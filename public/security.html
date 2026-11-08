@@ -114,6 +114,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 :focus-visible{outline:3px solid var(--acc-fill);outline-offset:2px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 @media (forced-colors: active){.btn,.mnav summary,.jump a{border:1px solid}}
+.ico{width:1.25em;height:1.25em;vertical-align:-.25em;margin-right:.5em;color:var(--ink);fill:none}.light .ico{color:var(--pink)}.pi .pic{width:28px;height:28px;display:block;color:var(--ink);fill:none}
 </style>
 </head>
 <body>
@@ -123,7 +124,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <nav class="dnav" aria-label="Main"><a href="/vision">Vision</a><a href="/portfolio">Portfolio</a><a href="/updates">Updates</a><a href="/roadmap">Roadmap</a><a href="/team">Team</a><a href="/faq">FAQ</a><a href="/support">Support</a><a href="https://github.com/wortforfilms/os">GitHub ↗</a></nav><details class="mnav"><summary><span class="bars" aria-hidden="true"></span><span class="ml">Menu</span><span class="skip">Open menu</span></summary><nav aria-label="Main"><a href="/vision">Vision</a><a href="/portfolio">Portfolio</a><a href="/updates">Updates</a><a href="/roadmap">Roadmap</a><a href="/team">Team</a><a href="/faq">FAQ</a><a href="/support">Support</a><a href="https://github.com/wortforfilms/os">GitHub ↗</a><div class="mg2"><a href="/security">Security</a><a href="/company">Company</a><a href="/press">Press</a><a href="/status">Status</a><a href="/privacy">Privacy</a></div></nav></details>
 </div></header>
 <main id="main">
-<section class="page-hero"><div class="wrap"><p class="eyebrow">Security</p><h1>What MAATAA OS protects today, and what it does not yet.</h1><p>This page states the security model plainly, so a reviewer can check it against the code. Every protected item has a test you can run; every gap is on the roadmap.</p></div></section>
+<section class="page-hero"><div class="wrap"><p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-security"/></svg>Security</p><h1>What MAATAA OS protects today, and what it does not yet.</h1><p>This page states the security model plainly, so a reviewer can check it against the code. Every protected item has a test you can run; every gap is on the roadmap.</p></div></section>
 <section class="band" style="border-top:0;padding-top:16px"><div class="wrap"><h2 class="vh">Protected today and not yet</h2><div class="cards">
 <div class="card"><h3>Protected today</h3><ul style="color:var(--soft);padding-left:18px;margin:8px 0 0">
 <li>Every task in its own MPU region; a task that writes kernel memory or overflows its stack is stopped</li>

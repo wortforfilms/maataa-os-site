@@ -106,6 +106,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 :focus-visible{outline:3px solid var(--acc-fill);outline-offset:2px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 @media (forced-colors: active){.btn,.mnav summary,.jump a{border:1px solid}}
+.ico{width:1.25em;height:1.25em;vertical-align:-.25em;margin-right:.5em;color:var(--ink);fill:none}.light .ico{color:var(--pink)}.pi .pic{width:28px;height:28px;display:block;color:var(--ink);fill:none}
 </style>
 </head>
 <body>
@@ -129,7 +130,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 </div></section>
 
 <section class="band" id="vision"><div class="wrap">
-<p class="eyebrow">01 / The problem</p>
+<p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-vision"/></svg>01 / The problem</p>
 <h2>Machines now act on their own. Their controllers still run unguarded code.</h2>
 <p class="intro">Drones, robots and industrial machines carry AI computers, but the small controllers that move their motors and read their sensors mostly run C with no walls between tasks. One bug or one bad update can take the whole machine with it. MAATAA OS gives those controllers what larger computers have had for decades: isolation, signed software and a store that survives a pulled cable.</p>
 <div class="cards">
@@ -141,7 +142,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 </div></section>
 
 <section class="band light" id="architecture"><div class="wrap">
-<p class="eyebrow">02 / How it is built</p>
+<p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-architecture"/></svg>02 / How it is built</p>
 <h2>Four layers, from the chip up.</h2>
 <p class="intro">Each layer below exists in the code today. The tag on the right says how far it has been tested.</p>
 <div class="stack">
@@ -154,7 +155,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 </div></section>
 
 <section class="band" id="where"><div class="wrap">
-<p class="eyebrow">03 / Where it runs</p>
+<p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-where"/></svg>03 / Where it runs</p>
 <h2>The small controller inside the machine.</h2>
 <p class="intro">MAATAA OS is for microcontrollers: the chips that drive motors, read sensors, stop a machine and talk on a field bus. It is not a phone, desktop or server operating system. The pictures below are concept renders of devices that would carry such a controller; none of them is a product we sell.</p>
 <ul class="gal">
@@ -175,7 +176,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 </div></section>
 
 <section class="band light" id="status"><div class="wrap">
-<p class="eyebrow">04 / Status</p>
+<p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-status"/></svg>04 / Status</p>
 <h2>What works today, and what is next.</h2>
 <p class="intro">MAATAA OS is an alpha. It is not yet a production operating system: secure boot, a locked debug port and an outside security review are still ahead. What is below has been run on a real board, with the scripts and logs in the repository.</p>
 <div class="tbl" tabindex="0" role="region" aria-label="Table (scrolls sideways on small screens)"><table>
@@ -199,7 +200,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 </div></section>
 
 <section class="band"><div class="wrap">
-<p class="eyebrow">Latest</p>
+<p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-updates"/></svg>Latest</p>
 <h2>Updates from the bench.</h2>
 <p class="intro">Every release, board run and decision is posted on the updates page, with a feed you can subscribe to.</p>
 <ul class="feed"><!--BUILD:latest-->
@@ -209,7 +210,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <p class="note"><a href="/updates">All updates →</a> · <a href="/roadmap">Roadmap →</a> · <a href="/feed.xml">RSS feed</a></p>
 </div></section>
 <section class="band" id="contact"><div class="wrap">
-<p class="eyebrow">Check it yourself · Contact</p>
+<p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-quickstart"/></svg>Check it yourself · Contact</p>
 <h2>Run the whole test suite in QEMU with one command.</h2>
 <p class="intro">If you build drones, robots or industrial controllers and want to try MAATAA OS on your hardware, we would like to hear from you.</p>
 <pre tabindex="0">git clone https://github.com/wortforfilms/os &amp;&amp; cd os
