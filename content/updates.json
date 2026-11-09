@@ -66,5 +66,41 @@
    "New sandhi rules in both the capsule and the host library, and a release script that refuses to create a missing signing key by accident."
   ],
   "points": []
+ },
+ {
+  "date": "2026-11-07",
+  "kind": "Code",
+  "title": "CAN driver for the NUCLEO-F446RE",
+  "body": [
+   "The first driver for the Field I/O family. It is in the kernel and tested on the host and in CI; it has not run on a board yet. The F446 board arrives this week."
+  ],
+  "points": [
+   "bxCAN1 at 500 kbit/s. Only exact bit timings are accepted (42 MHz bus, 14 time quanta per bit), checked by 8 host tests.",
+   "At boot the F446 kernel runs a loopback self-test: two frames go out and come back unchanged, and a frame the filters must block is checked to stay out.",
+   "The board test script fails unless the self-test line is in the boot log.",
+   "CI now builds with the same compiler as the size table (rustc 1.91.0)."
+  ]
+ },
+ {
+  "date": "2026-11-08",
+  "kind": "Code",
+  "title": "Modbus and battery data in the store; RS-485 driver core",
+  "body": [
+   "Groundwork for energy meters and battery packs. Tested on the host and in QEMU; not yet on a board."
+  ],
+  "points": [
+   "Two new store owners, Modbus and BMS. Each has flash keys for settings and RAM-only keys for live readings, so a reading every second does not wear out the flash.",
+   "Only the owning signed app can write its live keys; a signed host request cannot.",
+   "RS-485 driver core: line settings, baud rate and Modbus RTU frame gaps (3.5 characters, or 1,750 µs above 19,200 baud), with 13 host tests."
+  ]
+ },
+ {
+  "date": "2026-11-09",
+  "kind": "Site",
+  "title": "The roadmap now covers the whole portfolio",
+  "body": [
+   "The roadmap has three parts: what the operating system must do (done, now to January 2027, next, later), the products by family and tier, and research kept separate. The second chip family is the STM32H5, then the STM32G4. Sections and the 112 portfolio concepts now have icons."
+  ],
+  "points": []
  }
 ]

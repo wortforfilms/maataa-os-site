@@ -116,25 +116,52 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <nav class="dnav" aria-label="Main"><a href="/vision">Vision</a><a href="/portfolio">Portfolio</a><a href="/updates">Updates</a><a href="/roadmap" aria-current="page" style="color:var(--ink)">Roadmap</a><a href="/team">Team</a><a href="/faq">FAQ</a><a href="/support">Support</a><a href="https://github.com/wortforfilms/os">GitHub ↗</a></nav><details class="mnav"><summary><span class="bars" aria-hidden="true"></span><span class="ml">Menu</span><span class="skip">Open menu</span></summary><nav aria-label="Main"><a href="/vision">Vision</a><a href="/portfolio">Portfolio</a><a href="/updates">Updates</a><a href="/roadmap" aria-current="page" style="color:var(--ink)">Roadmap</a><a href="/team">Team</a><a href="/faq">FAQ</a><a href="/support">Support</a><a href="https://github.com/wortforfilms/os">GitHub ↗</a><div class="mg2"><a href="/security">Security</a><a href="/company">Company</a><a href="/press">Press</a><a href="/status">Status</a><a href="/privacy">Privacy</a></div></nav></details>
 </div></header>
 <main id="main">
-<section class="page-hero"><div class="wrap"><p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-roadmap"/></svg>Roadmap</p><h1>From alpha to a product others can ship.</h1><p>Each step closes a gap we state on the Status section. Target quarters assume the seed round closes; we will move them here, in public, if they change.</p></div></section>
-<section class="band light"><div class="wrap"><div class="road">
+<section class="page-hero"><div class="wrap"><p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-roadmap"/></svg>Roadmap</p><h1>From alpha to a product others can ship.</h1><p>Each step closes a gap we state on the Status section, and the products follow the portfolio's tiers. Target quarters assume the seed round closes; we will move them here, in public, if they change.</p></div></section>
+<section class="band light"><div class="wrap"><p class="eyebrow">The operating system</p><h2>What the OS must do before each product can ship.</h2><div class="road" style="margin-top:28px">
 <div class="col"><h2>Done</h2>
 <div class="item"><h3>Kernel and services</h3><p>Rust microkernel, MPU per task, priority inheritance, 19 system calls, watchdog. Release 0.1.0-alpha.9.</p></div>
 <div class="item"><h3>Signed apps and host requests</h3><p>ed25519-signed WebAssembly apps with fuel limits; signed install and remove over a per-boot challenge.</p></div>
-<div class="item"><h3>Sealed, power-loss-safe store</h3><p>Two banks, corruption detected; 9 of 9 power cuts passed on the board. A public development key today; a per-device secret key comes with Rev B.</p></div>
+<div class="item"><h3>Sealed, power-loss-safe store</h3><p>Two banks, corruption detected; 9 of 9 power cuts passed on the board. Each key range belongs to one signed app; live readings stay in RAM so the flash does not wear out. A public development key today; a per-device secret key comes with Rev B.</p></div>
 <div class="item"><h3>Panini engine</h3><p>31 sandhi rules as a signed app; a derivation core in Verilog matches 1,042 forms in simulation.</p></div>
 </div>
+<div class="col"><h2>Now · to January 2027</h2>
+<div class="item"><h3><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-can"/></svg>Field I/O drivers</h3><p>CAN with a loopback self-test and the RS-485 transfer logic are written and tested on the host; they run on the NUCLEO-F446RE next.</p><span class=gate>Gate: 1,000 CAN frames and 1,000 Modbus frames each way, zero errors</span></div>
+<div class="item"><h3><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-din"/></svg>Device calls and the Modbus app</h3><p>Two system calls that give a signed app its RS-485 port or CAN bus, and nothing else; a Modbus RTU app written in Rust.</p><span class=gate>Gate: an energy meter read over RS-485 for 24 hours, no lost readings</span></div>
+<div class="item"><h3><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-field-io"/></svg>Field I/O Rev A board</h3><p>Our first board: 24 V DIN-rail, STM32F446, isolated RS-485 and CAN. Designed with a contract engineer, 10 boards built.</p><span class=gate>Gate: Gate A: all 10 pass the test jig; two complete a 24-hour field read</span></div>
+</div>
 <div class="col"><h2>Next · Q1–Q2 2027</h2>
-<div class="item"><h3>Production security profile</h3><p>Secure boot, a signed kernel image, a locked debug port, and kernel updates in the field. Tested on a second, dedicated board.</p><span class=gate>Gate: boot refuses an unsigned or altered kernel</span></div>
-<div class="item"><h3>Second chip family</h3><p>An STM32H7 or a RISC-V microcontroller, with A/B kernel updates and automatic rollback.</p><span class=gate>Gate: the full test suite passes on both chips</span></div>
+<div class="item"><h3><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-secure"/></svg>Production security profile</h3><p>Secure boot, a signed kernel image, a locked debug port, a per-device store key and kernel updates in the field, on Field I/O Rev B (STM32H5).</p><span class=gate>Gate: boot refuses an unsigned or altered kernel</span></div>
+<div class="item"><h3>Second and third chip families</h3><p>STM32H5 for Rev B and the Gateway, then STM32G4 for Motion, with A/B kernel updates and automatic rollback.</p><span class=gate>Gate: the full test suite passes on each chip</span></div>
 <div class="item"><h3>Automated board testing</h3><p>Board runs in CI, including thousands of power cuts.</p><span class=gate>Gate: results posted on every release</span></div>
-<div class="item"><h3>FPGA prototype</h3><p>The Panini derivation core on an FPGA board, driven by the OS over SPI.</p><span class=gate>Gate: matches the reference on all 1,042 forms in hardware</span></div>
 </div>
 <div class="col"><h2>Later · Q2 2027 onward</h2>
 <div class="item"><h3>Outside security review</h3><p>Kernel, app loader and host channel, by an independent reviewer; findings and fixes published.</p><span class=gate>Gate: report received and issues closed</span></div>
-<div class="item"><h3>Design partners</h3><p>Three signed partners and one paid pilot in a drone, robot or industrial controller.</p><span class=gate>Gate: a pilot running on a partner's hardware</span></div>
+<div class="item"><h3>Design partners</h3><p>Three signed partners and one paid Field I/O pilot at tower, solar or battery sites.</p><span class=gate>Gate: a pilot running on a partner's site</span></div>
 <div class="item"><h3>App developer kit</h3><p>SDK, docs and toolchain for writing and signing apps.</p><span class=gate>Gate: an outside developer ships an app without our help</span></div>
 <div class="item"><h3>Functional safety (not yet planned)</h3><p>MAATAA OS is not for safety functions today. A path to IEC 61508 would need a safety plan, traced requirements, timing analysis, a qualified Rust toolchain, a safety-rated chip and an independent assessment, and takes years. We decide after the security review and the first pilots.</p><span class=gate>Gate: a go or no-go decision, with a partner who needs it</span></div>
+</div>
+</div></div></section>
+<section class="band"><div class="wrap"><p class="eyebrow">Products</p><h2>Three families first, then the portfolio by tier.</h2><p class="intro">The <a href="/portfolio">portfolio</a> holds 112 concepts, each with a tier that says how far the OS must grow to run it. None is a product yet. We build in this order, and each step waits for the one before it.</p><div class="road" style="margin-top:28px">
+<div class="col"><h2>First · three families</h2>
+<div class="item"><h3><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-field-io"/></svg>Field I/O</h3><p>A DIN-rail module with isolated RS-485 and CAN for tower, solar and battery sites. Rev A on the STM32F446, Rev B on the STM32H5.</p><span class=gate>Gate: Gate A, January 2027</span></div>
+<div class="item"><h3><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-gateway"/></svg>Gateway</h3><p>Field I/O plus Ethernet, on the same STM32H5 as Rev B.</p><span class=gate>Gate: starts after a paid Field I/O pilot</span></div>
+<div class="item"><h3><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-motion"/></svg>Motion</h3><p>Motor control and drone spray-payload controllers on the STM32G4. Payload only, never flight control.</p><span class=gate>Gate: starts after a paid Field I/O pilot</span></div>
+</div>
+<div class="col"><h2>Then · microcontroller tiers</h2>
+<div class="item"><h3>Tier A · 44 concepts</h3><p>Today's microcontroller class: I/O modules, sensors, meters, field controllers, robot I/O. They need the production security profile, not a bigger chip.</p><span class=gate>Gate: production security profile done</span></div>
+<div class="item"><h3>Tier B · 26 concepts</h3><p>A bigger microcontroller with a network or radio stack, or a small screen: gateways, trackers, building and vehicle controllers. 1.5–3 years.</p><span class=gate>Gate: a network stack and a radio on a second chip family</span></div>
+</div>
+<div class="col"><h2>Machines · tier A + C</h2>
+<div class="item"><h3>Tier A + C · 12 machines</h3><p>Robots, drones and rovers: MAATAA OS runs their motor and I/O controllers, their main computer runs Linux, and safety stays on a separate, certified safety controller.</p><span class=gate>Gate: a partner machine with our controllers inside</span></div>
+</div>
+<div class="col"><h2>Not ours to run</h2>
+<div class="item"><h3>Tier C · 23 concepts</h3><p>They need a Linux-class processor. MAATAA OS runs only a controller inside them, if any. No date.</p></div>
+<div class="item"><h3>Tier H · 7 concepts</h3><p>Hardware only: radios, power and enclosures with vendor firmware. Built when a family needs one.</p></div>
+</div>
+</div></div></section>
+<section class="band light"><div class="wrap"><p class="eyebrow">Research</p><h2>Off the product path, with their own gates.</h2><div class="road" style="margin-top:28px">
+<div class="col">
+<div class="item"><h3>FPGA prototype</h3><p>The Panini derivation core on an FPGA board, driven by the OS over SPI.</p><span class=gate>Gate: matches the reference on all 1,042 forms in hardware</span></div>
 <div class="item"><h3>Test chip (decision gate, 2028)</h3><p>Only after the FPGA prototype, a design review, a partner need and a shuttle quote.</p><span class=gate>Gate: all four conditions met</span></div>
 </div>
 </div></div></section>
