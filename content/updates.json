@@ -102,5 +102,18 @@
    "The roadmap has three parts: what the operating system must do (done, now to January 2027, next, later), the products by family and tier, and research kept separate. The second chip family is the STM32H5, then the STM32G4. Sections and the 112 portfolio concepts now have icons."
   ],
   "points": []
+ },
+ {
+  "date": "2026-11-09",
+  "kind": "Board run",
+  "title": "Demo videos: on the F411 board and in QEMU",
+  "body": [
+   "Two short videos are now on the home page. The board video was filmed on the NUCLEO-F411RE with the development key; the QEMU video uses lines from the emulator test runs, shortened to fit."
+  ],
+  "points": [
+   "Board: kernel flashed, host channel answered 10 pings in 2 ms; a signed app install replaced the Panini app and ran after a reset.",
+   "Power cut on the board: round 1 passed (cable pulled after 1,605 acknowledged writes; key 63 held 1,606, the write in flight). Rounds 2 and 3 did not complete: the board was not found again after the cable went back in. We will repeat the test.",
+   "QEMU: a tampered capsule refused at boot, a task killed for writing kernel memory and another for a stack overflow, signed install with old, tampered, unsigned and replayed requests refused, and the Panini app's sandhi answers."
+  ]
  }
 ]

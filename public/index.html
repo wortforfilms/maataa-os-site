@@ -129,6 +129,17 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <figure><img src="/assets/board.webp" alt="Our NUCLEO-F411RE development board, powered over USB, with the user LED lit" width="1200" height="933"><figcaption>Our development board running MAATAA OS, November 2026.</figcaption></figure>
 </div></section>
 
+<section class="band" id="demo"><div class="wrap">
+<p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-status"/></svg>Watch it run</p>
+<h2>Two short videos: on a real board, and in the emulator.</h2>
+<p class="intro">Both show real output, recorded on 9 November 2026. CAN and RS-485 have not run on a board yet; that video follows when the STM32F446 board arrives.</p>
+<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))">
+<div class="card"><video controls preload="none" playsinline width="960" height="540" poster="/assets/video/maataa-os-board-demo.jpg" style="width:100%;height:auto;border-radius:10px;display:block"><source src="/assets/video/maataa-os-board-demo.mp4" type="video/mp4"></video>
+<h3 style="margin:16px 0 6px">On the NUCLEO-F411RE board (46 s)</h3><p style="margin:0;color:var(--mut)">Boot and host channel, a signed app install, and a power cut while writing: the value in flight survived. One power-cut round is shown; the screen and the phone camera were filmed separately.</p></div>
+<div class="card"><video controls preload="none" playsinline width="960" height="540" poster="/assets/video/maataa-os-qemu-demo.jpg" style="width:100%;height:auto;border-radius:10px;display:block"><source src="/assets/video/maataa-os-qemu-demo.mp4" type="video/mp4"></video>
+<h3 style="margin:16px 0 6px">In QEMU, STM32F405 emulation (51 s)</h3><p style="margin:0;color:var(--mut)">Signature checks at boot, a faulty task stopped while the rest run, signed updates that refuse old, tampered and replayed images, and the Panini app. Lines from the real test runs, shortened to fit.</p></div>
+</div>
+</div></section>
 <section class="band" id="vision"><div class="wrap">
 <p class="eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#i-vision"/></svg>01 / The problem</p>
 <h2>Machines now act on their own. Their controllers still run unguarded code.</h2>
@@ -205,7 +216,7 @@ header.top .wrap{flex-wrap:nowrap;min-height:56px;gap:12px}
 <p class="intro">Every release, board run and decision is posted on the updates page, with a feed you can subscribe to.</p>
 <ul class="feed"><!--BUILD:latest-->
 <li class="entry"><time datetime="2026-11-09">9 Nov 2026</time><h3><a href="/updates#u-2026-11-09-the-roadmap-now-covers-the-whole-portfolio" style="color:inherit;text-decoration:none">The roadmap now covers the whole portfolio</a></h3><p>The roadmap has three parts: what the operating system must do (done, now to January 2027, next, later), the products by family and tier, and research kept separate. The second chip family is the STM32H5, then the STM32G4. Sections and the 112 portfolio concepts now have icons.</p></li>
-<li class="entry"><time datetime="2026-11-08">8 Nov 2026</time><h3><a href="/updates#u-2026-11-08-modbus-and-battery-data-in-the-store-rs-485-driver-core" style="color:inherit;text-decoration:none">Modbus and battery data in the store; RS-485 driver core</a></h3><p>Groundwork for energy meters and battery packs. Tested on the host and in QEMU; not yet on a board.</p></li>
+<li class="entry"><time datetime="2026-11-09">9 Nov 2026</time><h3><a href="/updates#u-2026-11-09-demo-videos-on-the-f411-board-and-in-qemu" style="color:inherit;text-decoration:none">Demo videos: on the F411 board and in QEMU</a></h3><p>Two short videos are now on the home page. The board video was filmed on the NUCLEO-F411RE with the development key; the QEMU video uses lines from the emulator test runs, shortened to fit.</p></li>
 <!--/BUILD:latest--></ul>
 <p class="note"><a href="/updates">All updates →</a> · <a href="/roadmap">Roadmap →</a> · <a href="/feed.xml">RSS feed</a></p>
 </div></section>
